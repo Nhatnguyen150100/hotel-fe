@@ -1,4 +1,10 @@
-import { FacebookFilled, InstagramFilled, MailFilled, PhoneFilled, YoutubeFilled } from "@ant-design/icons";
+import {
+  FacebookFilled,
+  InstagramFilled,
+  MailFilled,
+  PhoneFilled,
+  YoutubeFilled,
+} from "@ant-design/icons";
 import { Divider } from "antd";
 
 export default function TheFooter() {
@@ -56,8 +62,12 @@ export default function TheFooter() {
                 Zalo: 0943 896 555
               </a>
             </div>
-            <div className="space-x-2">
-              <MailFilled style={{ color: "white" }} />
+            <div className="space-x-2 flex flex-row justify-start items-center">
+              <img
+                className="h-[24px]"
+                src="./location-map.png"
+                style={{ color: "white" }}
+              />
               <span className="text-[var(--color-text-footer)]">
                 Bãi tắm C, Đường Hồ Xuân Hương – P.Trung Sơn – TP Sầm Sơn, Thanh
                 Hóa
