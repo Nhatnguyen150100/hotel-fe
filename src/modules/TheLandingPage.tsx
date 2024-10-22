@@ -48,7 +48,7 @@ const DEFINE_SWIPER_IMG = [
 export default function TheLandingPage() {
   return (
     <div className="flex flex-col w-full justify-start items-center">
-      <div data-aos="fade-up" className="w-full">
+      <div className="w-full">
         <Carousel autoplay>
           {DEFINE_IMG_CAROUSEL.map((item) => (
             <img
@@ -59,10 +59,7 @@ export default function TheLandingPage() {
           ))}
         </Carousel>
       </div>
-      <div
-        data-aos="fade-down"
-        className="container space-y-12 mt-10 flex flex-col w-full justify-start items-center relative"
-      >
+      <div className="container space-y-12 mt-10 flex flex-col w-full justify-start items-center relative">
         <div className="bg-white rounded-lg py-5 px-10 flex flex-row justify-between items-end shadow-lg w-max space-x-5">
           <div className="flex flex-col space-y-3">
             <label className="text-base font-medium">
