@@ -1,4 +1,4 @@
-import { Carousel } from "antd";
+import { Carousel, DatePicker } from "antd";
 
 const DEFINE_IMG_CAROUSEL = [
   "/landing_page/landing_page_1.jpg",
@@ -28,7 +28,7 @@ const DEFINE_ICON_SLOGAN = [
 
 export default function TheLandingPage() {
   return (
-    <div className="flex flex-col w-full justify-start items-center space-y-12">
+    <div className="flex flex-col w-full justify-start items-center">
       <div className="w-full">
         <Carousel autoplay>
           {DEFINE_IMG_CAROUSEL.map((item) => (
@@ -36,7 +36,13 @@ export default function TheLandingPage() {
           ))}
         </Carousel>
       </div>
-      <div className="container">
+      <div className="container space-y-12 mt-10 flex flex-col justify-start items-center">
+        <div className="rounded-lg py-5 px-10 flex flex-row justify-between items-center shadow-lg w-max">
+          <div className="flex flex-col">
+            <label className="text-base font-medium">Ngày nhận và trả phòng</label>
+            <DatePicker format='DD/MM/YYYY'/>
+          </div>
+        </div>
         <div className="w-full grid grid-cols-4 gap-5">
           {DEFINE_ICON_SLOGAN.map((item) => (
             <div className="flex flex-row justify-start items-start space-x-5 transform-hover hover:text-yellow-600 hover:cursor-pointer">
