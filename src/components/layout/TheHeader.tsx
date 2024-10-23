@@ -7,7 +7,7 @@ import {
 
 export default function TheHeader() {
   return (
-    <header className="w-full">
+    <header className={`w-full header`}>
       <div className="flex flex-row justify-center items-center w-full relative container">
         <div className="flex justify-start items-center space-x-3 absolute left-0">
           <PhoneOutlined
@@ -32,9 +32,10 @@ export default function TheHeader() {
             style={{ fontSize: "26px", color: "var(--primary-color-icon)" }}
           />
         </div>
-        <img className="min-h-[80px]" src="/logo.png" alt="logo" />
+        <img className="min-h-[100px]" src="/logo.png" alt="logo" />
         <div className="absolute right-0 flex flex-row justify-start items-center space-x-2">
-          <img className="max-h-[30px]" src="/map.png" />
+          <i className="fa fa-bars"></i>
+          <img className="max-h-[40px]" src="/map.png" />
           <a
             className="underline font-medium hover:text-yellow-600"
             target="_blank"
