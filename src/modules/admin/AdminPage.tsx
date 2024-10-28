@@ -1,5 +1,6 @@
+import { Navigate } from "react-router-dom";
+import { DEFINE_ROUTERS_ADMIN } from "../../constants/route-mapper";
+
 export default function AdminPage() {
-  return <div className="w-full">
-    <h1 className="text-2xl font-semibold">Danh sách lịch đặt</h1>
-  </div>
+  return <Navigate to={DEFINE_ROUTERS_ADMIN.roomManager} replace />;
 }

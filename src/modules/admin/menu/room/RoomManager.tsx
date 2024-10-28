@@ -5,10 +5,9 @@ import { IQueryUser } from "../../../../types/user.types";
 import facilitiesService from "../../../../services/facilitiesService";
 import { IFacilities } from "../../../../types/facilities.types";
 import Visibility from "../../../../components/base/visibility";
-import FacilityForm from "./FacilityForm";
 import { DeleteOutlined } from "@ant-design/icons";
 
-export default function FacilitiesManager() {
+export default function RoomManager() {
   const [query, setQuery] = React.useState<Partial<IQueryUser>>({
     page: 1,
     limit: 5,
@@ -132,7 +131,7 @@ export default function FacilitiesManager() {
     <>
       <div className="flex flex-col justify-start items-start space-y-5 w-full">
         <h1 className="font-bold text-2xl">
-          Danh sách các tiện ích trong phòng
+          Danh sách các phòng trong khách sạn
         </h1>
         <div className="flex flex-row justify-between items-center w-full">
           <BaseSearch
@@ -154,7 +153,7 @@ export default function FacilitiesManager() {
               setOpenModal(true);
             }}
           >
-            Thêm 1 tiện ích mới
+            Thêm 1 phòng mới
           </Button>
         </div>
         {loading ? (
@@ -184,17 +183,6 @@ export default function FacilitiesManager() {
           </div>
         )}
       </div>
-      <Visibility visibility={openModal}>
-        <FacilityForm
-          isOpenModal={openModal}
-          item={selectedFacility}
-          handleClose={() => {
-            setOpenModal(false);
-            setSelectedFacility(undefined);
-          }}
-          onFinish={onFinish}
-        />
-      </Visibility>
     </>
   );
 }

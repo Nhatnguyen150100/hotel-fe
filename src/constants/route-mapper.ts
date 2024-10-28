@@ -4,7 +4,8 @@ const DEFINE_ROUTE = {
 
 const DEFINE_ROUTERS_ADMIN = {
   home: "/admin",
-  facilitiesManager: '/admin/facilities-manager',
+  facilitiesManager: "/admin/facilities-manager",
+  roomManager: "/admin/room-manager",
   loginAdmin: "/login-admin",
 };
 

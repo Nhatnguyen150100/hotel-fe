@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   const menuItems = [
     {
-      path: DEFINE_ROUTERS_ADMIN.home,
+      path: DEFINE_ROUTERS_ADMIN.roomManager,
       label: "Quản lý phòng",
       icon: <HomeOutlined />,
     },
