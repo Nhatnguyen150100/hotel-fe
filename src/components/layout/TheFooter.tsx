@@ -9,9 +9,9 @@ import { Divider } from "antd";
 
 export default function TheFooter() {
   return (
-    <footer className="p-24 w-full bg-[var(--bg-footer)]">
+    <footer className="p-6 md:p-24 w-full bg-[var(--bg-footer)]">
       <div className="container bg-transparent flex flex-col items-center justify-start space-y-8">
-        <div className="grid grid-cols-2 gap-x-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div className="flex flex-col justify-start items-start space-y-4">
             <h3 className="font-semibold text-white text-xl">
               KHÁCH SẠN PHƯỢNG HOÀNG 2
@@ -31,7 +31,7 @@ export default function TheFooter() {
               THÔNG TIN LIÊN HỆ
             </h3>
             <Divider variant="solid" className="border-[1px] border-gray-300" />
-            <div className="space-x-2">
+            <div className="flex items-center space-x-2">
               <MailFilled style={{ color: "white" }} />
               <a
                 href="mailto:gm@phoenixhotel.vn"
@@ -40,7 +40,7 @@ export default function TheFooter() {
                 gm@phoenixhotel.vn
               </a>
             </div>
-            <div className="space-x-2">
+            <div className="flex items-center space-x-2">
               <PhoneFilled style={{ color: "white" }} />
               <a
                 href="tel:0945.293.201"
@@ -49,12 +49,8 @@ export default function TheFooter() {
                 Phone: 0945.293.201
               </a>
             </div>
-            <div className="space-x-2 flex flex-row">
-              <img
-                className="h-[24px]"
-                src="./zalo-icon.png"
-                style={{ color: "white" }}
-              />
+            <div className="flex items-center space-x-2">
+              <img className="h-[24px]" src="./zalo-icon.png" alt="Zalo Icon" />
               <a
                 href="https://zalo.me/0943 896 555"
                 className="text-[var(--color-text-footer)] hover:text-white hover:underline"
@@ -62,11 +58,11 @@ export default function TheFooter() {
                 Zalo: 0943 896 555
               </a>
             </div>
-            <div className="space-x-2 flex flex-row justify-start items-center">
+            <div className="flex items-center space-x-2">
               <img
                 className="h-[24px]"
                 src="./location-map.png"
-                style={{ color: "white" }}
+                alt="Location Icon"
               />
               <span className="text-[var(--color-text-footer)]">
                 Bãi tắm C, Đường Hồ Xuân Hương – P.Trung Sơn – TP Sầm Sơn, Thanh
@@ -91,14 +87,14 @@ export default function TheFooter() {
         </div>
       </div>
       <Divider variant="solid" className="border-[1px] border-gray-300" />
-      <div className="container flex justify-center items-center bg-transparent relative">
-        <span className="text-white absolute left-0">
+      <div className="container flex justify-center items-center bg-transparent relative flex-col md:flex-row">
+        <span className="text-white absolute left-0 text-center md:text-left hidden md:block">
           © 2024 Phuong Hoang Hospitality. All Rights Reserved.
         </span>
-        <h3 className="font-semibold text-white text-xl">
+        <h3 className="font-semibold text-white text-xl mt-4 md:mt-0">
           KHÁCH SẠN PHƯỢNG HOÀNG 2
         </h3>
-        <div className="flex justify-start items-center space-x-3 absolute right-0">
+        <div className="flex justify-center md:justify-start items-center space-x-3 absolute right-0 hidden md:block">
           <FacebookFilled
             className="hover:!text-yellow-600 hover:cursor-pointer"
             style={{ fontSize: "26px", color: "white" }}

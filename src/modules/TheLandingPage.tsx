@@ -133,15 +133,15 @@ export default function TheLandingPage() {
           {DEFINE_IMG_CAROUSEL.map((item) => (
             <img
               key={item}
-              className="w-full h-[480px] object-cover"
+              className="w-full h-[640px] object-cover"
               src={item}
             />
           ))}
         </Carousel>
       </div>
       <div className="container space-y-24 my-10 flex flex-col w-full justify-start items-center relative bg-transparent">
-        <div className="bg-white rounded-lg py-5 px-10 flex flex-row justify-between items-end shadow-lg w-max space-x-5 absolute top-[-100px]">
-          <div className="flex flex-col space-y-3 min-w-[280px]">
+        <div className="bg-white rounded-lg py-5 px-4 sm:px-10 flex sm:flex-row flex-col justify-between items-end shadow-lg sm:w-max space-x-5 absolute top-[-100px]">
+          <div className="flex flex-col space-y-3 min-w-[200px] sm:min-w-[280px]">
             <label className="text-base font-medium">
               Bạn muốn nghỉ dưỡng ở đâu?
             </label>
@@ -162,7 +162,7 @@ export default function TheLandingPage() {
             </label>
             <DatePicker.RangePicker
               placeholder={["Chọn ngày nhận", "Chọn ngày trả"]}
-              className="h-[45px] w-[300px]"
+              className="h-[45px] w-full sm:w-[300px]"
               format="DD/MM/YYYY"
             />
           </div>
@@ -178,7 +178,7 @@ export default function TheLandingPage() {
           </div>
           <div className="flex flex-col space-y-3">
             <label className="text-base font-medium">
-              Thêm mã khuyến mãi / Vocher
+              Thêm mã khuyến mãi / Voucher
             </label>
             <Input
               className="h-[45px]"
@@ -192,7 +192,7 @@ export default function TheLandingPage() {
             />
           </div>
           <Button
-            className="h-[45px] bg-yellow-600 hover:!bg-yellow-500"
+            className="h-[45px] bg-yellow-600 hover:bg-yellow-500"
             type="primary"
             variant="filled"
             icon={<SearchOutlined />}
@@ -200,7 +200,7 @@ export default function TheLandingPage() {
             Tìm kiếm phòng
           </Button>
         </div>
-        <div className="w-full grid grid-cols-4 gap-5 px-24">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-5 px-4 sm:px-24">
           {DEFINE_ICON_SLOGAN.map((item) => (
             <div
               key={item.text}
@@ -214,7 +214,7 @@ export default function TheLandingPage() {
           ))}
         </div>
         <div className="flex flex-col justify-start items-center w-full space-y-10">
-          <span className="uppercase text-[40px] font-normal">
+          <span className="uppercase text-[32px] sm:text-[40px] font-normal">
             <strong className="me-2">ưu đãi</strong>
             dành cho bạn
           </span>
@@ -225,10 +225,18 @@ export default function TheLandingPage() {
                 disableOnInteraction: false,
               }}
               loop={true}
-              slidesPerView={3}
+              slidesPerView={1}
               spaceBetween={30}
               pagination={{
                 clickable: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                },
+                768: {
+                  slidesPerView: 3,
+                },
               }}
               style={{ paddingBottom: "40px" }}
               modules={[Pagination, Autoplay]}
@@ -251,12 +259,12 @@ export default function TheLandingPage() {
               ))}
             </Swiper>
           </div>
-          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg hover flex flex-row justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
+          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
             Xem thêm
           </button>
         </div>
         <div className="flex flex-col justify-start items-center w-full space-y-10">
-          <span className="uppercase text-[40px] font-normal">
+          <span className="uppercase text-[32px] sm:text-[40px] font-normal">
             <strong className="me-2">điểm đến</strong>
             nổi bật
           </span>
@@ -267,43 +275,57 @@ export default function TheLandingPage() {
                 disableOnInteraction: false,
               }}
               loop={true}
-              slidesPerView={3}
+              slidesPerView={1}
               spaceBetween={30}
               pagination={{
                 clickable: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                },
+                768: {
+                  slidesPerView: 3,
+                },
               }}
               style={{ paddingBottom: "50px" }}
               modules={[Pagination, Autoplay]}
               className="mySwiper"
             >
               {DEFINE_IMG_SWIPER_GRID.map((item) => (
-                <SwiperSlide>{item}</SwiperSlide>
+                <SwiperSlide key={item.key}>{item}</SwiperSlide>
               ))}
             </Swiper>
           </div>
-          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg hover flex flex-row justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
+          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
             Xem thêm
           </button>
         </div>
         <div className="flex flex-col justify-start items-center w-full space-y-10">
-          <span className="uppercase text-[40px] font-normal">
+          <span className="uppercase text-[32px] sm:text-[40px] font-normal">
             <strong className="me-2">tin tức</strong>
             nổi bật
           </span>
-          <div className="min-h-[120px] w-full grid grid-rows-2 grid-flow-col gap-10">
+          <div className="min-h-[120px] w-full grid sm:grid-rows-2 sm:grid-flow-col gap-10">
             {DEFINE_NEW.map((item, index) => {
               return (
-                <div className={`flex flex-col justify-start items-start space-y-3 ${index === 0  && 'row-span-2 col-span-2'}`}>
+                <div
+                  className={`flex flex-col justify-start items-start space-y-3 ${
+                    index === 0 && "row-span-2 col-span-2"
+                  }`}
+                >
                   <ImageHover src={item.img} alt="img" />
                   <a className="w-full text-lg font-semibold text-start hover:text-yellow-600">
                     {item.title}
                   </a>
-                  <span className="w-full whitespace-pre-wrap">{item.description}</span>
+                  <span className="w-full whitespace-pre-wrap">
+                    {item.description}
+                  </span>
                 </div>
               );
             })}
           </div>
-          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg hover flex flex-row justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
+          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
             Xem thêm
           </button>
         </div>
