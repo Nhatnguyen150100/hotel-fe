@@ -57,7 +57,7 @@ export default function ListRoom() {
               key={room.id}
               className="flex flex-row justify-start items-center p-5 bg-white rounded-xl w-full space-x-5 h-[240px]"
             >
-              <div className="w-[320px] h-[200px]">
+              <div className="w-[420px] h-[200px]">
                 <CustomSwiper room={room} />
               </div>
               <div className="flex flex-col justify-between items-start h-full w-full">
