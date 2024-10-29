@@ -101,7 +101,7 @@ export default function TheLandingPage() {
           {DEFINE_IMG_CAROUSEL.map((item) => (
             <img
               key={item}
-              className="w-full h-[640px] object-cover"
+              className="w-full h-[540px] object-cover"
               src={item}
             />
           ))}

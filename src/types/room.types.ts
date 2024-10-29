@@ -1,3 +1,5 @@
+import { IFacilities } from "./facilities.types";
+
 export interface IRoom {
   id: string;
   name: string;
@@ -16,10 +18,11 @@ export interface IRoom {
   img_6: string | null;
 }
 
-interface IFacilitiesRooms {
+export interface IFacilitiesRooms {
   id: number;
   roomId: string;
   facilityId: string;
+  facility: IFacilities;
   createdAt: string;
   updatedAt: string;
 }
