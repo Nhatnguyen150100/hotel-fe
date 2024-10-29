@@ -10,6 +10,8 @@ import { formatCurrency } from "../../utils/format-money";
 import * as React from "react";
 import { IRoom } from "../../types/room.types";
 import roomService from "../../services/roomService";
+import { useNavigate } from "react-router-dom";
+import { DEFINE_ROUTE } from "../../constants/route-mapper";
 
 const DEFINE_SWIPER_IMG = [
   {
@@ -46,7 +48,7 @@ const DEFINE_SWIPER_IMG = [
 
 export default function ListRoomLandingPage() {
   const [listRoom, setListRoom] = React.useState<IRoom[]>([]);
-  console.log("🚀 ~ ListRoomLandingPage ~ listRoom:", listRoom);
+  const navigate = useNavigate();
 
   const handleGetListRoom = async () => {
     const rs = await roomService.getAllRooms({
@@ -61,7 +63,7 @@ export default function ListRoomLandingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-start items-center w-full space-y-10">
+    <div className="flex flex-col justify-start items-center w-full space-y-10 max-w-[1220px]">
       <span className="uppercase text-[32px] sm:text-[40px] font-normal">
         <strong className="me-2">ưu đãi</strong>
         dành cho bạn
@@ -93,13 +95,13 @@ export default function ListRoomLandingPage() {
           {listRoom.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="flex flex-col justify-start items-start space-y-3 bg-[#f4f4f5]">
-                <div className="h-[360px] w-[440px]">
+                <div className="h-[250px] w-[400px]">
                   <ImageHover
                     src={item.img_1 ?? "/landing_page/swipper/swipper_1.jpg"}
                     alt="img"
                   />
                 </div>
-                <span className="w-full text-lg font-semibold text-start">
+                <span className="w-full text-lg font-semibold text-start first-letter:capitalize">
                   {item.name}
                 </span>
                 <div className="flex flex-row justify-start items-center">
@@ -115,7 +117,12 @@ export default function ListRoomLandingPage() {
           ))}
         </Swiper>
       </div>
-      <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
+      <button
+        onClick={() => {
+          navigate(DEFINE_ROUTE.listRoom);
+        }}
+        className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]"
+      >
         Xem thêm
       </button>
     </div>

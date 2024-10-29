@@ -6,7 +6,6 @@ import {
 } from "@ant-design/icons";
 import { Button, DatePicker, Input } from "antd";
 import dayjs from "dayjs";
-import * as React from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function SearchRoom() {

@@ -1,5 +1,6 @@
 const DEFINE_ROUTE = {
   home: "/",
+  listRoom: "/list-rooms"
 };
 
 const DEFINE_ROUTERS_ADMIN = {

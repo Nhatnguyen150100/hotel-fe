@@ -10,6 +10,7 @@ import FacilitiesManager from "../modules/admin/menu/facilities/FacilitiesManage
 import RoomManager from "../modules/admin/menu/room/RoomManager";
 import CreateRoom from "../modules/admin/menu/room/CreateRoom";
 import EditRoom from "../modules/admin/menu/room/EditRoom";
+import ListRoom from "../modules/list-room/ListRoom";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         index: true,
         element: <TheLandingPage />,
       },
+      {
+        path: DEFINE_ROUTE.listRoom,
+        element: <ListRoom />,
+      }
     ],
   },
   {
