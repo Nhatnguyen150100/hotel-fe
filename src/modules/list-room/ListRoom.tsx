@@ -7,10 +7,12 @@ import roomService from "../../services/roomService";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import "react-quill/dist/quill.snow.css";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import ImageHover from "../../components/base/ImageHover";
-import { LeftOutlined, RightOutlined, SearchOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import BaseModal from "../../components/base/BaseModal";
 import Visibility from "../../components/base/visibility";
 import { formatCurrency } from "../../utils/format-money";
