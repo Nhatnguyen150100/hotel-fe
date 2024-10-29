@@ -1,54 +1,29 @@
-import { Button, FormProps, message, Spin, Table, TableProps } from "antd";
+import { Button, FormProps, message, Modal, Spin, Table, TableProps } from "antd";
 import * as React from "react";
 import BaseSearch from "../../../../components/base/BaseSearch";
 import { IQueryUser } from "../../../../types/user.types";
-import facilitiesService from "../../../../services/facilitiesService";
-import { IFacilities } from "../../../../types/facilities.types";
-import Visibility from "../../../../components/base/visibility";
 import { DeleteOutlined } from "@ant-design/icons";
+import { IRoom } from "../../../../types/room.types";
+import { useNavigate } from "react-router-dom";
+import { DEFINE_ROUTERS_ADMIN } from "../../../../constants/route-mapper";
+import roomService from "../../../../services/roomService";
 
 export default function RoomManager() {
+  const navigate = useNavigate();
   const [query, setQuery] = React.useState<Partial<IQueryUser>>({
     page: 1,
     limit: 5,
     nameLike: "",
   });
-  const [facilitiesList, setFacilities] = React.useState<IFacilities[]>([]);
+  const [roomList, setRoomList] = React.useState<IRoom[]>([]);
   const [loading, setLoading] = React.useState(false);
 
-  const [openModal, setOpenModal] = React.useState(false);
-  const [selectedFacility, setSelectedFacility] = React.useState<IFacilities>();
-
-  const onFinish: FormProps<{
-    name: string;
-    icon: string;
-  }>["onFinish"] = async (values) => {
-    const data = { ...values };
-    try {
-      setLoading(true);
-      const rs = selectedFacility?.id
-        ? await facilitiesService.updateFacility(selectedFacility.id, data)
-        : await facilitiesService.createFacility({
-            name: data.name,
-            icon: data.icon,
-          });
-      message.success(rs.message);
-      handleGetFacilitiesList();
-      setOpenModal(false);
-      setSelectedFacility(undefined);
-    } catch (error: any) {
-      message.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGetFacilitiesList = async (queryParam = query) => {
+  const handleGetRoomList = async (queryParam = query) => {
     try {
       setLoading(true);
       delete queryParam.total;
-      const rs = await facilitiesService.getAllFacilities(queryParam);
-      setFacilities(rs.data.content);
+      const rs = await roomService.getAllRooms(queryParam);
+      setRoomList(rs.data.content);
       setQuery({
         ...queryParam,
         total: rs.data.totalCount,
@@ -58,24 +33,37 @@ export default function RoomManager() {
     }
   };
 
-  const handleDeleteFacility = async (_facility: IFacilities) => {
-    try {
-      setLoading(true);
-      const rs = await facilitiesService.deleteFacility(_facility.id);
-      message.success(rs.message);
-      handleGetFacilitiesList();
-    } catch (error: any) {
-      message.error(error.message);
-    } finally {
-      setLoading(false);
-    }
+  const handleDeleteRoom = async (_room: IRoom) => {
+    Modal.confirm({
+      title: "Bạn có muốn xóa phòng này này",
+      content: `Phòng: ${_room.name}`,
+      okText: "Đồng ý",
+      okType: "danger",
+      cancelText: "Hủy",
+      style: {
+        top: "50%",
+        transform: "translateY(-50%)",
+      },
+      onOk: async () => {
+        try {
+          setLoading(true);
+          const rs = await roomService.deleteRoom(_room.id);
+          message.success(rs.message);
+          handleGetRoomList();
+        } catch (error: any) {
+          message.error(error.message);
+        } finally {
+          setLoading(false);
+        }
+      },
+    });
   };
 
   React.useEffect(() => {
-    handleGetFacilitiesList();
+    handleGetRoomList();
   }, []);
 
-  const columns: TableProps<IFacilities>["columns"] = [
+  const columns: TableProps<IRoom>["columns"] = [
     {
       title: "Số thứ tự",
       key: "index",
@@ -83,34 +71,43 @@ export default function RoomManager() {
         (query.page! - 1) * query.limit! + index + 1,
     },
     {
-      title: "Tên tiện ích",
+      title: "Tên phòng",
       dataIndex: "name",
       align: "center",
       key: "name",
       render: (text) => <span className="text-lg font-medium">{text}</span>,
     },
     {
-      title: "Icon",
-      dataIndex: "icon",
-      className: "flex flex-row justify-center h-[70px]",
+      title: "Ảnh phòng",
+      dataIndex: "img_1",
+      align: "center",
       key: "icon",
-      render: (icon) => (
-        <img
-          className="h-[30px] w-[30px]"
-          src={`/icon-facilities/${icon}.png`}
-        />
-      ),
+      render: (img) => <img className="h-[60px]" src={img} />,
     },
     {
-      title: "Xóa tiện ích",
-      key: "deleteFacility",
+      title: "Loại giường",
+      dataIndex: "bedType",
       align: "center",
-      dataIndex: "deleteFacility",
-      render: (_, _item: IFacilities) => (
+      key: "name",
+      render: (text) => <span className="text-lg font-medium">{text}</span>,
+    },
+    {
+      title: "Diện tích phòng",
+      dataIndex: "bedType",
+      align: "center",
+      key: "name",
+      render: (text) => <span className="text-lg font-medium">{text}</span>,
+    },
+    {
+      title: "Xóa phòng",
+      key: "deleteRoom",
+      align: "center",
+      dataIndex: "deleteRoom",
+      render: (_, _item: IRoom) => (
         <Button
           onClick={(e) => {
             e.stopPropagation();
-            handleDeleteFacility(_item);
+            handleDeleteRoom(_item);
           }}
           className="ms-3"
           variant="solid"
@@ -122,9 +119,8 @@ export default function RoomManager() {
     },
   ];
 
-  const handleClickRow = (record: IFacilities) => {
-    setSelectedFacility(record);
-    setOpenModal(true);
+  const handleClickRow = (record: IRoom) => {
+    navigate(DEFINE_ROUTERS_ADMIN.editRoom.replace(":id", record.id));
   };
 
   return (
@@ -139,18 +135,18 @@ export default function RoomManager() {
             onHandleChange={(value) => {
               setQuery({ ...query, nameLike: value });
               if (!value)
-                handleGetFacilitiesList({
+                handleGetRoomList({
                   page: query.page,
                   limit: query.limit,
                 });
             }}
-            onSearch={() => handleGetFacilitiesList()}
+            onSearch={() => handleGetRoomList()}
           />
           <Button
             type="primary"
             variant="filled"
             onClick={() => {
-              setOpenModal(true);
+              navigate(DEFINE_ROUTERS_ADMIN.newRoom);
             }}
           >
             Thêm 1 phòng mới
@@ -160,19 +156,20 @@ export default function RoomManager() {
           <Spin />
         ) : (
           <div className="w-full">
-            <Table<IFacilities>
+            <Table<IRoom>
               rowKey="id"
+              className="hover:cursor-pointer"
               columns={columns}
               onRow={(record) => ({
                 onClick: () => handleClickRow(record),
               })}
-              dataSource={facilitiesList}
+              dataSource={roomList}
               pagination={{
                 current: query.page,
                 pageSize: query.limit,
                 total: query.total,
                 onChange: (page, limit) => {
-                  handleGetFacilitiesList({
+                  handleGetRoomList({
                     ...query,
                     page,
                     limit,

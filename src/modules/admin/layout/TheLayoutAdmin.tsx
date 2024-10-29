@@ -20,11 +20,7 @@ export default function TheLayoutAdmin() {
     <div className="flex flex-row">
       
       <Sidebar />
-      {/* <Divider
-        variant="dashed"
-        style={{ borderWidth: "1px", borderColor: "black" }}
-      /> */}
-      <div className="container w-full py-10">
+      <div className="container w-full py-10 h-screen overflow-y-auto">
         <Outlet />
       </div>
     </div>
