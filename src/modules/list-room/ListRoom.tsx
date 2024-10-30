@@ -1,6 +1,6 @@
 import * as React from "react";
 import SearchRoom from "../landing-page/SearchRoom";
-import { Button, Divider } from "antd";
+import { Button, Divider, Tooltip } from "antd";
 import { IFacilitiesRooms, IRoom } from "../../types/room.types";
 import roomService from "../../services/roomService";
 
@@ -8,18 +8,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import "react-quill/dist/quill.snow.css";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import ImageHover from "../../components/base/ImageHover";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import BaseModal from "../../components/base/BaseModal";
 import Visibility from "../../components/base/visibility";
 import { formatCurrency } from "../../utils/format-money";
 import { IBaseQuery } from "../../types/query.types";
 import { Pagination as PaginationAntd } from "antd";
+import { useNavigate } from "react-router-dom";
+import { DEFINE_ROUTE } from "../../constants/route-mapper";
+import CustomSwiper from "../../components/base/CustomSwiper";
 
 export default function ListRoom() {
+  const navigate = useNavigate();
   const [listRoom, setListRoom] = React.useState<IRoom[]>([]);
   const [selectedRoom, setSelectedRoom] = React.useState<IRoom>();
   const [openModal, setOpenModal] = React.useState<boolean>(false);
@@ -59,12 +58,23 @@ export default function ListRoom() {
               key={room.id}
               className="flex flex-row justify-start items-center p-5 bg-white rounded-xl w-full space-x-5 h-[240px]"
             >
-              <div className="w-[420px] h-[200px]">
+              <div className="w-[380px] h-[200px]">
                 <CustomSwiper room={room} />
               </div>
               <div className="flex flex-col justify-between items-start h-full w-full">
                 <div className="flex flex-col justify-start items-start space-y-4 grow">
-                  <h1 className="text-2xl font-semibold">{room.name}</h1>
+                  <Tooltip title="Nhấn để xem chi tiết">
+                    <h1
+                      className="text-2xl font-semibold hover:text-blue-700 hover:cursor-pointer hover:underline"
+                      onClick={() => {
+                        navigate(
+                          DEFINE_ROUTE.roomDetail.replace(":id", room.id)
+                        );
+                      }}
+                    >
+                      {room.name}
+                    </h1>
+                  </Tooltip>
                   <div className="flex items-center space-x-5">
                     <div className="flex flex-row items-end space-x-2">
                       <img
@@ -110,13 +120,12 @@ export default function ListRoom() {
                   </div>
                 </div>
                 <div className="flex flex-row w-full justify-between items-center">
-                  <div className="flex flex-col justify-start items-start space-y-1">
+                  <div className="flex flex-col justify-start items-start space-y-0.5">
                     <span className="italic text-sm">Giá chỉ từ</span>
                     <span className="font-semibold text-2xl text-yellow-500">
                       {formatCurrency(room.normalDayPrice ?? 0)}
                     </span>
                   </div>
-
                   <Button
                     className="h-[45px] bg-yellow-600 hover:!bg-yellow-500"
                     type="primary"
@@ -199,78 +208,5 @@ export default function ListRoom() {
         </BaseModal>
       </Visibility>
     </div>
-  );
-}
-
-function CustomSwiper({ room }: { room: IRoom }) {
-  const sliderRef = React.useRef<any>(null);
-
-  const handlePrev = React.useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slidePrev();
-  }, []);
-
-  const handleNext = React.useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
-  }, []);
-
-  return (
-    <>
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        ref={sliderRef}
-        navigation={false}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {room.img_1 && (
-          <SwiperSlide>
-            <ImageHover className="rounded-xl" src={room.img_1} alt="img" />
-          </SwiperSlide>
-        )}
-        {room.img_2 && (
-          <SwiperSlide>
-            <ImageHover className="rounded-xl" src={room.img_2} alt="img" />
-          </SwiperSlide>
-        )}
-        {room.img_3 && (
-          <SwiperSlide>
-            <ImageHover className="rounded-xl" src={room.img_3} alt="img" />
-          </SwiperSlide>
-        )}
-        {room.img_4 && (
-          <SwiperSlide>
-            <ImageHover className="rounded-xl" src={room.img_4} alt="img" />
-          </SwiperSlide>
-        )}
-        {room.img_5 && (
-          <SwiperSlide>
-            <ImageHover className="rounded-xl" src={room.img_5} alt="img" />
-          </SwiperSlide>
-        )}
-        {room.img_6 && (
-          <SwiperSlide>
-            <ImageHover className="rounded-xl" src={room.img_6} alt="img" />
-          </SwiperSlide>
-        )}
-      </Swiper>
-      <div className="relative">
-        <div
-          className="absolute top-[-110px] z-50 rounded-full h-[32px] w-[32px] bg-white p-1 flex justify-center items-center hover:cursor-pointer transform-hover"
-          onClick={handlePrev}
-        >
-          <LeftOutlined />
-        </div>
-        <div
-          className="absolute top-[-110px] right-0 z-50 rounded-full h-[32px] w-[32px] bg-white p-1 flex justify-center items-center hover:cursor-pointer transform-hover"
-          onClick={handleNext}
-        >
-          <RightOutlined />
-        </div>
-      </div>
-    </>
   );
 }

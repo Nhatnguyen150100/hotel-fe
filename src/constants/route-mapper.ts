@@ -1,6 +1,8 @@
 const DEFINE_ROUTE = {
   home: "/",
-  listRoom: "/list-rooms"
+  listRoom: "/list-rooms",
+  roomDetail: "/room-detail/:id",
+  bookingPage: "/booking"
 };
 
 const DEFINE_ROUTERS_ADMIN = {

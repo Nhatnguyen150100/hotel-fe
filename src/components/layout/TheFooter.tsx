@@ -50,7 +50,7 @@ export default function TheFooter() {
               </a>
             </div>
             <div className="flex items-center space-x-2">
-              <img className="h-[24px]" src="./zalo-icon.png" alt="Zalo Icon" />
+              <img className="h-[24px]" src="/zalo-icon.png" alt="Zalo Icon" />
               <a
                 href="https://zalo.me/0943 896 555"
                 className="text-[var(--color-text-footer)] hover:text-white hover:underline"
@@ -61,7 +61,7 @@ export default function TheFooter() {
             <div className="flex items-center space-x-2">
               <img
                 className="h-[24px]"
-                src="./location-map.png"
+                src="/location-map.png"
                 alt="Location Icon"
               />
               <span className="text-[var(--color-text-footer)]">
