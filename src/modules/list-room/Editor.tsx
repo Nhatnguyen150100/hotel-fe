@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import BlotFormatter from "quill-blot-formatter";
 import "quill/dist/quill.snow.css";
@@ -9,25 +9,23 @@ const Editor = () => {
     modules: { blotFormatter: {} },
   });
 
+  const [content, setContent] = useState(""); // State để lưu nội dung
+
   const handleSubmit = async () => {
-    // Lấy nội dung từ Quill
-    const content = quill?.root.innerHTML;
-    console.log("🚀 ~ handleSubmit ~ content:", content);
+    const currentContent = quill?.root.innerHTML;
+    setContent(currentContent); // Cập nhật state với nội dung hiện tại
+    console.log("🚀 ~ handleSubmit ~ content:", currentContent);
   };
 
   if (Quill && !quill) {
-    // const BlotFormatter = require('quill-blot-formatter');
     Quill.register("modules/blotFormatter", BlotFormatter);
   }
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", (delta, oldContents) => {
-        console.log("Text change!");
-        console.log(delta);
-
-        const currrentContents = quill.getContents();
-        console.log("🚀 ~ quill.on ~ currrentContents:", currrentContents);
+      quill.on("text-change", () => {
+        const currentContent = quill.root.innerHTML;
+        setContent(currentContent); // Cập nhật state khi có thay đổi
       });
     }
   }, [quill, Quill]);
@@ -36,8 +34,13 @@ const Editor = () => {
     <div>
       <div ref={quillRef} />
       <Button type="primary" onClick={handleSubmit}>
-        upload
+        Upload
       </Button>
+      {/* Hiển thị preview nội dung */}
+      <div className="preview">
+        <h3>Preview:</h3>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </div>
     </div>
   );
 };

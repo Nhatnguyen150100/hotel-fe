@@ -15,6 +15,7 @@ import "swiper/css/grid";
 import ImageHover from "../../components/base/ImageHover";
 import ListRoomLandingPage from "./ListRoomLandingPage";
 import SearchRoom from "./SearchRoom";
+import Editor from "../list-room/Editor";
 
 const DEFINE_IMG_CAROUSEL = [
   "/landing_page/landing_page_1.jpg",
@@ -125,6 +126,8 @@ export default function TheLandingPage() {
           ))}
         </div>
         <ListRoomLandingPage />
+        
+      <Editor />
         <div className="flex flex-col justify-start items-center w-full space-y-10">
           <span className="uppercase text-[32px] sm:text-[40px] font-normal">
             <strong className="me-2">điểm đến</strong>
