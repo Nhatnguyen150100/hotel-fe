@@ -10,6 +10,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import ImageHover from "../../components/base/ImageHover";
 import { formatCurrency } from "../../utils/format-money";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
+import buildUrlWithParams from "../../utils/build-url-with-param";
 
 export default function RoomDetail() {
   const navigate = useNavigate();
@@ -182,7 +183,9 @@ export default function RoomDetail() {
               type="primary"
               variant="filled"
               onClick={() => {
-                navigate(DEFINE_ROUTE.bookingPage)
+                navigate(buildUrlWithParams(DEFINE_ROUTE.bookingPage, {
+                  roomId: room.id
+                }))
               }}
             >
               Đặt phòng ngay
