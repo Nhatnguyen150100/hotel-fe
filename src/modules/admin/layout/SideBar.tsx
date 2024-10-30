@@ -6,6 +6,7 @@ import {
   SettingOutlined,
   LoginOutlined,
   AppstoreAddOutlined,
+  PieChartOutlined,
 } from "@ant-design/icons";
 import isChildUrl from "../../../utils/check-active-router";
 import { DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";
@@ -15,6 +16,11 @@ const Sidebar = () => {
   const location = useLocation();
 
   const menuItems = [
+    {
+      path: DEFINE_ROUTERS_ADMIN.bookingManager,
+      label: "Danh sách đặt phòng",
+      icon: <PieChartOutlined />,
+    },
     {
       path: DEFINE_ROUTERS_ADMIN.roomManager,
       label: "Quản lý phòng",
@@ -36,7 +42,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col w-64 h-screen bg-black text-white">
+    <div className="flex flex-col w-80 h-screen bg-black text-white">
       <div className="flex items-center justify-center h-16">
         <h1 className="text-2xl font-bold">Logo</h1>
       </div>

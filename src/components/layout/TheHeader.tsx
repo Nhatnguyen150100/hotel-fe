@@ -4,6 +4,8 @@ import {
   PhoneOutlined,
   YoutubeFilled,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { DEFINE_ROUTE } from "../../constants/route-mapper";
 
 export default function TheHeader() {
   return (
@@ -32,7 +34,9 @@ export default function TheHeader() {
             style={{ fontSize: "26px", color: "var(--primary-color-icon)" }}
           />
         </div>
-        <img className="min-h-[100px]" src="/logo.png" alt="logo" />
+        <Link to={DEFINE_ROUTE.home}>
+          <img className="min-h-[100px]" src="/logo.png" alt="logo" />
+        </Link>
         <div className="absolute right-0 flex flex-row justify-start items-center space-x-2">
           <i className="fa fa-bars"></i>
           <img className="max-h-[40px]" src="/map.png" />

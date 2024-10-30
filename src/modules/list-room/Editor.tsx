@@ -9,11 +9,11 @@ const Editor = () => {
     modules: { blotFormatter: {} },
   });
 
-  const [content, setContent] = useState(""); // State để lưu nội dung
+  const [content, setContent] = useState("");
 
   const handleSubmit = async () => {
     const currentContent = quill?.root.innerHTML;
-    setContent(currentContent); // Cập nhật state với nội dung hiện tại
+    setContent(currentContent as string);
     console.log("🚀 ~ handleSubmit ~ content:", currentContent);
   };
 
@@ -23,12 +23,16 @@ const Editor = () => {
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", () => {
+      const updateContent = () => {
         const currentContent = quill.root.innerHTML;
-        setContent(currentContent); // Cập nhật state khi có thay đổi
-      });
+        setContent(currentContent);
+      };
+      quill.on("text-change", updateContent);
+      return () => {
+        quill.off("text-change", updateContent);
+      };
     }
-  }, [quill, Quill]);
+  }, [quill]);
 
   return (
     <div>
@@ -36,10 +40,12 @@ const Editor = () => {
       <Button type="primary" onClick={handleSubmit}>
         Upload
       </Button>
-      {/* Hiển thị preview nội dung */}
-      <div className="preview">
+      <div className="preview w-full">
         <h3>Preview:</h3>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div
+          className="ql-editor"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
       </div>
     </div>
   );

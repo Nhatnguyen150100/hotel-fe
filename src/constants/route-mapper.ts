@@ -2,13 +2,14 @@ const DEFINE_ROUTE = {
   home: "/",
   listRoom: "/list-rooms",
   roomDetail: "/room-detail/:id",
-  bookingPage: "/booking"
+  bookingPage: "/booking",
 };
 
 const DEFINE_ROUTERS_ADMIN = {
   home: "/admin",
   facilitiesManager: "/admin/facilities-manager",
   roomManager: "/admin/room-manager",
+  bookingManager: "/admin/booking-manager",
   newRoom: "/admin/room-manager/new-room",
   editRoom: "/admin/room-manager/edit-room/:id",
   loginAdmin: "/login-admin",

@@ -13,6 +13,7 @@ import EditRoom from "../modules/admin/menu/room/EditRoom";
 import ListRoom from "../modules/list-room/ListRoom";
 import RoomDetail from "../modules/room-detail/RoomDetail";
 import BookingPage from "../modules/booking/BookingPage";
+import BookingManager from "../modules/admin/menu/booking/BookingManager";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <AdminPage />,
+      },
+      {
+        path: DEFINE_ROUTERS_ADMIN.bookingManager,
+        element: <BookingManager />,
       },
       {
         path: DEFINE_ROUTERS_ADMIN.roomManager,
