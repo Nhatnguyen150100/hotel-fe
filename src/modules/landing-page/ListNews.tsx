@@ -1,6 +1,6 @@
 import * as React from "react";
 import { INew } from "../../types/new.types";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import newService from "../../services/newService";
 import Visibility from "../../components/base/visibility";
 import { Empty } from "antd";
@@ -60,9 +60,9 @@ export default function ListNews() {
                   <ImageHover src={item.thumbnailImg} alt="img" />
                 )}
 
-                <a className="w-full text-lg font-semibold text-start hover:text-yellow-600">
+                <Link to={DEFINE_ROUTE.newDetail.replace(":id", item.id)} className="w-full text-lg font-semibold text-start hover:text-yellow-600">
                   {item.name}
-                </a>
+                </Link>
                 <span className="w-full whitespace-pre-wrap">
                   {displayDescription(item.description, index === 0 ? 200 : 50)}
                 </span>
