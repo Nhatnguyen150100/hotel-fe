@@ -7,6 +7,7 @@ import {
   LoginOutlined,
   AppstoreAddOutlined,
   PieChartOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import isChildUrl from "../../../utils/check-active-router";
 import { DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";
@@ -31,8 +32,11 @@ const Sidebar = () => {
       label: "Quản lý tiện ích",
       icon: <AppstoreAddOutlined />,
     },
-    { path: "/users", label: "Users", icon: <UserOutlined /> },
-    { path: "/settings", label: "Settings", icon: <SettingOutlined /> },
+    {
+      path: DEFINE_ROUTERS_ADMIN.newsManager,
+      label: "Quản lý bài viết",
+      icon: <FormOutlined />,
+    },
   ];
 
   const handleLogOut = () => {

@@ -14,39 +14,6 @@ import { useNavigate } from "react-router-dom";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
 import Visibility from "../../components/base/visibility";
 
-const DEFINE_SWIPER_IMG = [
-  {
-    title:
-      "[NIGHT DEAL - ƯU ĐÃI TỚI 75%] áp dụng đặt phòng tại Khách sạn PHƯỢNG HOÀNG 2",
-    img: "/landing_page/swipper/swipper_1.jpg",
-    price: 650000,
-  },
-  {
-    title:
-      "[NIGHT DEAL - ƯU ĐÃI TỚI 75%] áp dụng đặt phòng tại Khách sạn PHƯỢNG HOÀNG 2",
-    img: "/landing_page/swipper/swipper_2.jpg",
-    price: 650000,
-  },
-  {
-    title:
-      "[NIGHT DEAL - ƯU ĐÃI TỚI 75%] áp dụng đặt phòng tại Khách sạn PHƯỢNG HOÀNG 2",
-    img: "/landing_page/swipper/swipper_3.jpg",
-    price: 650000,
-  },
-  {
-    title:
-      "[NIGHT DEAL - ƯU ĐÃI TỚI 75%] áp dụng đặt phòng tại Khách sạn PHƯỢNG HOÀNG 2",
-    img: "/landing_page/swipper/swipper_4.jpg",
-    price: 650000,
-  },
-  {
-    title:
-      "[NIGHT DEAL - ƯU ĐÃI TỚI 75%] áp dụng đặt phòng tại Khách sạn PHƯỢNG HOÀNG 2",
-    img: "/landing_page/swipper/swipper_5.jpg",
-    price: 650000,
-  },
-];
-
 export default function ListRoomLandingPage() {
   const [listRoom, setListRoom] = React.useState<IRoom[]>([]);
   const navigate = useNavigate();

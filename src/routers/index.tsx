@@ -14,6 +14,11 @@ import ListRoom from "../modules/list-room/ListRoom";
 import RoomDetail from "../modules/room-detail/RoomDetail";
 import BookingPage from "../modules/booking/BookingPage";
 import BookingManager from "../modules/admin/menu/booking/BookingManager";
+import CreateNew from "../modules/admin/menu/new/CreateNew";
+import NewManager from "../modules/admin/menu/new/NewManager";
+import ListNew from "../modules/list-news/ListNew";
+import NewDetail from "../modules/new-detail/NewDetail";
+import NewDetailAdmin from "../modules/admin/menu/new/NewDetailAdmin";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: DEFINE_ROUTE.listRoom,
         element: <ListRoom />,
+      },
+      {
+        path: DEFINE_ROUTE.listNews,
+        element: <ListNew />,
+      },
+      {
+        path: DEFINE_ROUTE.newDetail,
+        element: <NewDetail />,
       },
       {
         path: DEFINE_ROUTE.roomDetail,
@@ -51,6 +64,18 @@ const router = createBrowserRouter([
       {
         path: DEFINE_ROUTERS_ADMIN.bookingManager,
         element: <BookingManager />,
+      },
+      {
+        path: DEFINE_ROUTERS_ADMIN.createNew,
+        element: <CreateNew />,
+      },
+      {
+        path: DEFINE_ROUTERS_ADMIN.newDetail,
+        element: <NewDetailAdmin />,
+      },
+      {
+        path: DEFINE_ROUTERS_ADMIN.newsManager,
+        element: <NewManager />,
       },
       {
         path: DEFINE_ROUTERS_ADMIN.roomManager,

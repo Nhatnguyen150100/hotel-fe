@@ -15,7 +15,8 @@ import "swiper/css/grid";
 import ImageHover from "../../components/base/ImageHover";
 import ListRoomLandingPage from "./ListRoomLandingPage";
 import SearchRoom from "./SearchRoom";
-import Editor from "../list-room/Editor";
+import Editor from "../../components/base/Editor";
+import ListNews from "./ListNews";
 
 const DEFINE_IMG_CAROUSEL = [
   "/landing_page/landing_page_1.jpg",
@@ -126,8 +127,6 @@ export default function TheLandingPage() {
           ))}
         </div>
         <ListRoomLandingPage />
-        
-      <Editor />
         <div className="flex flex-col justify-start items-center w-full space-y-10">
           <span className="uppercase text-[32px] sm:text-[40px] font-normal">
             <strong className="me-2">điểm đến</strong>
@@ -166,34 +165,7 @@ export default function TheLandingPage() {
             Xem thêm
           </button>
         </div>
-        <div className="flex flex-col justify-start items-center w-full space-y-10">
-          <span className="uppercase text-[32px] sm:text-[40px] font-normal">
-            <strong className="me-2">tin tức</strong>
-            nổi bật
-          </span>
-          <div className="min-h-[120px] w-full grid sm:grid-rows-2 sm:grid-flow-col gap-10">
-            {DEFINE_NEW.map((item, index) => {
-              return (
-                <div
-                  className={`flex flex-col justify-start items-start space-y-3 ${
-                    index === 0 && "row-span-2 col-span-2"
-                  }`}
-                >
-                  <ImageHover src={item.img} alt="img" />
-                  <a className="w-full text-lg font-semibold text-start hover:text-yellow-600">
-                    {item.title}
-                  </a>
-                  <span className="w-full whitespace-pre-wrap">
-                    {item.description}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
-            Xem thêm
-          </button>
-        </div>
+        <ListNews />
       </div>
     </div>
   );
