@@ -3,7 +3,7 @@ import { IQueryUser } from "../../../../types/user.types";
 import roomService from "../../../../services/roomService";
 import { IBooking } from "../../../../types/booking.types";
 import bookingService from "../../../../services/bookingService";
-import { Empty, Spin, Table, TableProps } from "antd";
+import { Empty, Spin, Table, TableProps, Tooltip } from "antd";
 import { formatDate } from "../../../../utils/format-date";
 import BaseSearch from "../../../../components/base/BaseSearch";
 import BookingForm from "./BookingForm";
@@ -16,7 +16,6 @@ export default function BookingManager() {
     nameLike: "",
   });
   const [listBooking, setListBooking] = React.useState<IBooking[]>([]);
-  console.log("🚀 ~ BookingManager ~ listBooking:", listBooking);
   const [loading, setLoading] = React.useState(false);
 
   const [openModal, setOpenModal] = React.useState(false);
@@ -58,6 +57,17 @@ export default function BookingManager() {
       title: "Số điện thoại",
       dataIndex: "phoneNumber",
       key: "phoneNumber",
+      render: (text) => (
+        <Tooltip title="Nhấn để gọi">
+          <a
+            onClick={(e) => e.stopPropagation()}
+            href={`tel:${text}`}
+            className="text-base font-medium text-blue-700 underline"
+          >
+            {text}
+          </a>
+        </Tooltip>
+      ),
     },
     {
       title: "Ngày nhận phòng",

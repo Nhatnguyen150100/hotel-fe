@@ -1,10 +1,4 @@
-import {
-  EnvironmentOutlined,
-  EuroCircleOutlined,
-  HomeOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Button, Carousel, DatePicker, Input } from "antd";
+import { Carousel } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -15,8 +9,10 @@ import "swiper/css/grid";
 import ImageHover from "../../components/base/ImageHover";
 import ListRoomLandingPage from "./ListRoomLandingPage";
 import SearchRoom from "./SearchRoom";
-import Editor from "../../components/base/Editor";
 import ListNews from "./ListNews";
+import { useNavigate } from "react-router-dom";
+import buildUrlWithParams from "../../utils/build-url-with-param";
+import { DEFINE_ROUTE } from "../../constants/route-mapper";
 
 const DEFINE_IMG_CAROUSEL = [
   "/landing_page/landing_page_1.jpg",
@@ -26,54 +22,27 @@ const DEFINE_IMG_CAROUSEL = [
 ];
 
 const DEFINE_IMG_SWIPER_GRID = [
-  <ImageHover src="/landing_page/swiper-grid/swiper_grid_1.jpg" />,
-  <div className="flex flex-col justify-between items-center space-y-5">
+  <div className="h-[620px]">
+    <ImageHover src="/landing_page/swiper-grid/swiper_grid_1.jpg" />
+  </div>,
+  <div className="flex flex-col justify-between items-center space-y-5 h-[620px]">
     <ImageHover src="/landing_page/swiper-grid/swiper_grid_2.jpg" />
     <ImageHover src="/landing_page/swiper-grid/swiper_grid_3.jpg" />
   </div>,
-  <ImageHover src="/landing_page/swiper-grid/swiper_grid_4.jpg" />,
-  <div className="flex flex-col justify-between items-center space-y-5">
+  <div className="h-[620px]">
+    <ImageHover src="/landing_page/swiper-grid/swiper_grid_4.jpg" />
+  </div>,
+  <div className="flex flex-col justify-between items-center space-y-5 h-[620px]">
     <ImageHover src="/landing_page/swiper-grid/swiper_grid_5.jpg" />
     <ImageHover src="/landing_page/swiper-grid/swiper_grid_6.jpg" />
   </div>,
-  <ImageHover src="/landing_page/swiper-grid/swiper_grid_7.jpg" />,
-  <div className="flex flex-col justify-between items-center space-y-5">
+  <div className="h-[620px]">
+    <ImageHover src="/landing_page/swiper-grid/swiper_grid_7.jpg" />
+  </div>,
+  <div className="flex flex-col justify-between items-center space-y-5 h-[620px]">
     <ImageHover src="/landing_page/swiper-grid/swiper_grid_8.jpg" />
     <ImageHover src="/landing_page/swiper-grid/swiper_grid_9.jpg" />
   </div>,
-];
-
-const DEFINE_NEW = [
-  {
-    title: "Hành trình khám phá Chùa Hương Hà Nội chi tiết và mới nhất",
-    description:
-      "Khám phá Chùa Hương Hà Nội - quần thể tâm linh đặc sắc với kiến trúc ấn tượng, lịch sử lâu đời, và lễ hội văn hóa tâm linh thu hút hàng triệu du khách",
-    img: "/landing_page/tin-tuc/tin_tuc_1.jpg",
-  },
-  {
-    title: "Hành trình khám phá Chùa Hương Hà Nội chi tiết và mới nhất",
-    description:
-      "Khám phá Chùa Hương Hà Nội - quần thể tâm linh đặc sắc với kiến trúc ấn tượng, lịch sử lâu đời, và lễ hội văn hóa tâm linh thu hút hàng triệu du khách",
-    img: "/landing_page/tin-tuc/tin_tuc_2.jpg",
-  },
-  {
-    title: "Hành trình khám phá Chùa Hương Hà Nội chi tiết và mới nhất",
-    description:
-      "Khám phá Chùa Hương Hà Nội - quần thể tâm linh đặc sắc với kiến trúc ấn tượng, lịch sử lâu đời, và lễ hội văn hóa tâm linh thu hút hàng triệu du khách",
-    img: "/landing_page/tin-tuc/tin_tuc_3.jpg",
-  },
-  {
-    title: "Hành trình khám phá Chùa Hương Hà Nội chi tiết và mới nhất",
-    description:
-      "Khám phá Chùa Hương Hà Nội - quần thể tâm linh đặc sắc với kiến trúc ấn tượng, lịch sử lâu đời, và lễ hội văn hóa tâm linh thu hút hàng triệu du khách",
-    img: "/landing_page/tin-tuc/tin_tuc_4.jpg",
-  },
-  {
-    title: "Hành trình khám phá Chùa Hương Hà Nội chi tiết và mới nhất",
-    description:
-      "Khám phá Chùa Hương Hà Nội - quần thể tâm linh đặc sắc với kiến trúc ấn tượng, lịch sử lâu đời, và lễ hội văn hóa tâm linh thu hút hàng triệu du khách",
-    img: "/landing_page/tin-tuc/tin_tuc_5.jpg",
-  },
 ];
 
 const DEFINE_ICON_SLOGAN = [
@@ -96,6 +65,7 @@ const DEFINE_ICON_SLOGAN = [
 ];
 
 export default function TheLandingPage() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-full justify-start items-center">
       <div className="w-full">
@@ -111,7 +81,16 @@ export default function TheLandingPage() {
       </div>
       <div className="container space-y-24 my-10 flex flex-col w-full justify-start items-center relative bg-transparent">
         <div className="absolute top-[-100px]">
-          <SearchRoom />
+          <SearchRoom
+            handleSearch={(startDate, endDate) => {
+              navigate(
+                buildUrlWithParams(DEFINE_ROUTE.listRoom, {
+                  startDate,
+                  endDate,
+                })
+              );
+            }}
+          />
         </div>
         <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-5 px-4 sm:px-24">
           {DEFINE_ICON_SLOGAN.map((item) => (

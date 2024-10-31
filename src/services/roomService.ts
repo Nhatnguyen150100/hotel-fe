@@ -67,6 +67,19 @@ class RoomService {
       return Promise.reject(error);
     }
   }
+
+  public async getAllRoomsFromUser(
+    query: Record<string, any>
+  ): Promise<IBaseResponse<IBaseResponseList<IRoom[]>>> {
+    try {
+      const rs = await axiosRequest.get(`${this._prefixURL}/from-user`, {
+        params: onRemoveParams(query),
+      });
+      return Promise.resolve(rs.data);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }
 
 export default new RoomService();

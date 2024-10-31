@@ -10,7 +10,7 @@ import { formatCurrency } from "../../utils/format-money";
 import * as React from "react";
 import { IRoom } from "../../types/room.types";
 import roomService from "../../services/roomService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
 import Visibility from "../../components/base/visibility";
 
@@ -70,9 +70,9 @@ export default function ListRoomLandingPage() {
                       alt="img"
                     />
                   </div>
-                  <span className="w-full text-lg font-semibold text-start first-letter:capitalize">
+                  <Link to={DEFINE_ROUTE.roomDetail.replace(":id", item.id)} className="w-full text-lg font-semibold text-start first-letter:capitalize hover:text-yellow-600 hover:cursor-pointer">
                     {item.name}
-                  </span>
+                  </Link>
                   <div className="flex flex-row justify-start items-center">
                     <span className="font-semibold text-2xl text-yellow-600">
                       <span className="text-base text-black italic font-normal">

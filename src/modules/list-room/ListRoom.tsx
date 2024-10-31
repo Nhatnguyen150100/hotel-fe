@@ -1,6 +1,6 @@
 import * as React from "react";
 import SearchRoom from "../landing-page/SearchRoom";
-import { Button, Divider, Tooltip } from "antd";
+import { Button, Divider, notification, Tooltip } from "antd";
 import { IFacilitiesRooms, IRoom } from "../../types/room.types";
 import roomService from "../../services/roomService";
 
@@ -13,27 +13,55 @@ import Visibility from "../../components/base/visibility";
 import { formatCurrency } from "../../utils/format-money";
 import { IBaseQuery } from "../../types/query.types";
 import { Pagination as PaginationAntd } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
 import CustomSwiper from "../../components/base/CustomSwiper";
+import dayjs from "dayjs";
+import buildUrlWithParams from "../../utils/build-url-with-param";
+import GeneralLoading from "../../components/base/GeneralLoading";
 
 export default function ListRoom() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [listRoom, setListRoom] = React.useState<IRoom[]>([]);
   const [selectedRoom, setSelectedRoom] = React.useState<IRoom>();
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [query, setQuery] = React.useState<IBaseQuery>({
     page: 1,
     limit: 3,
+    startDate: searchParams.get("startDate")
+      ? dayjs(searchParams.get("startDate"))
+      : null,
+    endDate: searchParams.get("endDate")
+      ? dayjs(searchParams.get("endDate"))
+      : null,
   });
+  const [loading, setLoading] = React.useState(false);
 
-  const handleGetListRoom = async () => {
-    const rs = await roomService.getAllRooms(query);
-    setListRoom(rs.data.content);
-    setQuery({
-      ...query,
-      total: rs.data.totalCount,
-    });
+  React.useEffect(() => {
+    setQuery((pre) => ({
+      ...pre,
+      startDate: searchParams.get("startDate")
+        ? dayjs(searchParams.get("startDate"))
+        : null,
+      endDate: searchParams.get("endDate")
+        ? dayjs(searchParams.get("endDate"))
+        : null,
+    }));
+  }, [searchParams.get("startDate"), searchParams.get("endDate")]);
+
+  const handleGetListRoom = async (param = query) => {
+    try {
+      setLoading(true);
+      const rs = await roomService.getAllRoomsFromUser(param);
+      setListRoom(rs.data.content);
+      setQuery({
+        ...param,
+        total: rs.data.totalCount,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   React.useEffect(() => {
@@ -42,7 +70,15 @@ export default function ListRoom() {
 
   return (
     <div className="flex flex-col justify-start items-center py-5 space-y-5 w-full">
-      <SearchRoom />
+      <SearchRoom
+        handleSearch={(startDate, endDate) => {
+          handleGetListRoom({
+            ...query,
+            startDate,
+            endDate,
+          });
+        }}
+      />
       <div className="flex flex-row justify-between items-start w-full max-w-[1300px] space-x-10">
         <div className="flex flex-col px-8 py-5 justify-start items-start bg-white rounded-2xl min-w-[360px]">
           <h1 className="text-lg font-semibold">Kết quả</h1>
@@ -130,6 +166,15 @@ export default function ListRoom() {
                     className="h-[45px] bg-yellow-600 hover:!bg-yellow-500"
                     type="primary"
                     variant="filled"
+                    onClick={() => {
+                      navigate(
+                        buildUrlWithParams(DEFINE_ROUTE.bookingPage, {
+                          roomId: room.id,
+                          startDate: query.startDate,
+                          endDate: query.endDate,
+                        })
+                      );
+                    }}
                   >
                     Đặt phòng ngay
                   </Button>
@@ -207,6 +252,7 @@ export default function ListRoom() {
           </div>
         </BaseModal>
       </Visibility>
+      <GeneralLoading isLoading={loading} />
     </div>
   );
 }
