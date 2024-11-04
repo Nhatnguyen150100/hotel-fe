@@ -80,7 +80,7 @@ export default function TheLandingPage() {
         </Carousel>
       </div>
       <div className="container space-y-24 my-10 flex flex-col w-full justify-start items-center relative bg-transparent">
-        <div className="absolute top-[-100px]">
+        <div className="absolute sm:top-[-100px] top-[-200px]">
           <SearchRoom
             handleSearch={(startDate, endDate) => {
               navigate(
@@ -92,14 +92,14 @@ export default function TheLandingPage() {
             }}
           />
         </div>
-        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-5 px-4 sm:px-24">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-5 px-4 sm:px-24 pt-[240px] sm:pt-0">
           {DEFINE_ICON_SLOGAN.map((item) => (
             <div
               key={item.text}
               className="flex flex-row justify-start items-start space-x-5 transform-hover hover:text-yellow-600 hover:cursor-pointer"
             >
               <img className="w-12 h-12" src={item.icon} />
-              <p className="text-lg font-medium max-w-[170px] text-center">
+              <p className="sm:text-lg text-base font-medium max-w-[170px] text-center">
                 {item.text}
               </p>
             </div>

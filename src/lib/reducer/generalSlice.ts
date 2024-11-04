@@ -3,11 +3,13 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { IGeneral } from '../../types/general.types';
 
 export interface CounterState {
-  modalActive: IGeneral
+  modalActive: IGeneral,
+  isMobile: boolean
 }
 
 const initialState: CounterState = {
-  modalActive: null
+  modalActive: null,
+  isMobile: false,
 };
 
 export const generalSlice = createSlice({
@@ -17,10 +19,13 @@ export const generalSlice = createSlice({
     setModalActive: (state, action: PayloadAction<IGeneral>) => {
       state.modalActive = action.payload;
     },
+    setIsMobile: (state, action: PayloadAction<boolean>) => {
+      state.isMobile = action.payload;
+    }
   },
 });
 
-export const { setModalActive } = generalSlice.actions;
+export const { setModalActive, setIsMobile } = generalSlice.actions;
 
 const generalReducer = generalSlice.reducer;
 

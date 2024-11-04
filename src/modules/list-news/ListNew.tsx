@@ -47,7 +47,7 @@ export default function ListNew() {
       <h1 className="text-blue-800 text-3xl font-semibold">
         Danh sách tin tức
       </h1>
-      <div className="grid grid-cols-3 gap-10">
+      <div className="grid sm:grid-cols-3 grid-cols-1 gap-10">
         <Visibility
           visibility={Boolean(newList.length)}
           suspenseComponent={<Empty />}

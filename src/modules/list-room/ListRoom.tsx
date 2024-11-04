@@ -79,8 +79,8 @@ export default function ListRoom() {
           });
         }}
       />
-      <div className="flex flex-row justify-between items-start w-full max-w-[1300px] space-x-10">
-        <div className="flex flex-col px-8 py-5 justify-start items-start bg-white rounded-2xl min-w-[360px]">
+      <div className="flex sm:flex-row flex-col sm:justify-between sm:items-start w-full max-w-[1300px] sm:space-x-10 sm:space-y-0 space-y-5 justify-start items-center px-3 sm:px-0">
+        <div className="flex flex-col px-8 py-5 justify-start items-start bg-white rounded-2xl sm:min-w-[360px] min-w-[320px]">
           <h1 className="text-lg font-semibold">Kết quả</h1>
           <Divider />
           <span className="text-base font-light">
@@ -92,9 +92,9 @@ export default function ListRoom() {
           {listRoom.map((room) => (
             <div
               key={room.id}
-              className="flex flex-row justify-start items-center p-5 bg-white rounded-xl w-full space-x-5 h-[240px]"
+              className="flex sm:flex-row flex-col justify-start items-center p-5 bg-white rounded-xl w-full sm:space-x-5 sm:h-[240px] space-y-3 sm:space-y-0"
             >
-              <div className="w-[380px] h-[200px]">
+              <div className="sm:w-[380px] h-[200px] w-[360px]">
                 <CustomSwiper room={room} />
               </div>
               <div className="flex flex-col justify-between items-start h-full w-full">
@@ -204,7 +204,7 @@ export default function ListRoom() {
           }}
         >
           <div className="py-5 flex flex-col items-start justify-start space-y-5">
-            <div className="flex flex-row justify-start w-full items-start space-x-5">
+            <div className="flex sm:flex-row flex-col justify-start w-full items-start sm:space-x-5 space-y-5">
               <div className="w-[320px] h-[200px]">
                 <CustomSwiper room={selectedRoom!} />
               </div>

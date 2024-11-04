@@ -48,8 +48,9 @@ export default function ListNews() {
           {newList.map((item, index) => {
             return (
               <div
-                className={`flex flex-col justify-start items-start space-y-3 ${
-                  index === 0 && "row-span-2 col-span-3"
+                key={item.id}
+                className={`flex flex-col justify-start sm:items-start items-center space-y-3 ${
+                  index === 0 && "sm:row-span-2 sm:col-span-3"
                 }`}
               >
                 {index !== 0 ? (

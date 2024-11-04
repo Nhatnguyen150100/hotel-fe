@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Button, DatePicker, Input, message } from "antd";
 import dayjs, { Dayjs } from "dayjs";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import onRemoveParams from "../../utils/on-remove-params";
 
@@ -28,8 +28,8 @@ export default function SearchRoom({handleSearch} : IProps) {
   );
 
   return (
-    <div className="bg-white rounded-lg py-5 px-4 sm:px-10 flex sm:flex-row flex-col justify-between items-end shadow-lg sm:w-max space-x-5">
-      <div className="flex flex-col space-y-3 min-w-[200px] sm:min-w-[280px]">
+    <div className="bg-white rounded-lg py-5 px-4 sm:px-10 flex sm:flex-row flex-col justify-between items-end shadow-lg sm:w-max space-x-5 space-y-5">
+      <div className="flex flex-col space-y-3 sm:min-w-[280px] w-full sm:w-auto">
         <label className="text-base font-medium">
           Bạn muốn nghỉ dưỡng ở đâu?
         </label>
@@ -44,7 +44,7 @@ export default function SearchRoom({handleSearch} : IProps) {
           placeholder="Nơi bạn muốn nghỉ dưỡng"
         />
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 w-full sm:w-auto">
         <label className="text-base font-medium">Ngày nhận và trả phòng</label>
         <DatePicker.RangePicker
           onChange={(dates) => {
@@ -65,7 +65,7 @@ export default function SearchRoom({handleSearch} : IProps) {
           format="DD/MM/YYYY"
         />
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 w-full sm:w-auto">
         <label className="text-base font-medium">Số phòng</label>
         <Input
           className="h-[45px]"
@@ -75,7 +75,7 @@ export default function SearchRoom({handleSearch} : IProps) {
           placeholder="Nhập số phòng"
         />
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 w-full sm:w-auto">
         <label className="text-base font-medium">
           Thêm mã khuyến mãi / Voucher
         </label>

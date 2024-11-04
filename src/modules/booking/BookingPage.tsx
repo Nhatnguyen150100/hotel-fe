@@ -81,10 +81,10 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="container bg-transparent p-10">
-      <div className="flex flex-row justify-start items-center w-full mb-10">
+    <div className="container bg-transparent sm:p-10 p-5">
+      <div className="flex sm:flex-row flex-col justify-start sm:items-center items-start w-full mb-10 space-y-5">
         <span
-          className="flex  flex-row justify-start items-center transform-hover hover:text-yellow-600 hover:cursor-pointer space-x-3"
+          className="flex flex-row justify-start items-center transform-hover hover:text-yellow-600 hover:cursor-pointer space-x-3"
           onClick={() => {
             navigate(-1);
           }}
@@ -96,7 +96,7 @@ export default function BookingPage() {
           thông tin đặt phòng
         </h1>
       </div>
-      <div className="grid grid-cols-6 gap-x-5">
+      <div className="grid sm:grid-cols-6 grid-cols-1 sm:gap-x-5 gap-y-5">
         <div className="rounded-xl bg-white p-5 col-span-4 flex flex-col justify-start items-start space-y-5">
           <h1 className="text-base font-medium">Thông tin người đặt phòng</h1>
           <Divider />
@@ -190,7 +190,7 @@ export default function BookingPage() {
           <h1 className="text-base font-medium">Thông tin phòng được đặt</h1>
           <Divider />
           <Visibility visibility={Boolean(room?.id)}>
-            <div className="w-[380px] h-[200px]">
+            <div className="sm:w-[380px] w-[330px] h-[200px]">
               <CustomSwiper room={room!} />
             </div>
             <div className="flex flex-col justify-start items-start w-full space-y-4 mt-4">
@@ -249,7 +249,7 @@ export default function BookingPage() {
           }}
         >
           <div className="py-5 flex flex-col items-start justify-start space-y-5">
-            <div className="flex flex-row justify-start w-full items-start space-x-5">
+            <div className="flex sm:flex-row flex-col justify-start w-full items-start sm:space-x-5 space-y-5">
               <div className="w-[320px] h-[200px]">
                 {room && <CustomSwiper room={room} />}
               </div>
