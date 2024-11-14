@@ -1,8 +1,7 @@
 import cookiesStore from "../../../plugins/cookiesStore";
 import { Navigate, Outlet } from "react-router-dom";
-import { Button, Divider } from "antd";
 import Sidebar from "./SideBar";
-import { DEFINE_ROUTE, DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";
+import { DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";
 
 export default function TheLayoutAdmin() {
   const admin = cookiesStore.get("admin");

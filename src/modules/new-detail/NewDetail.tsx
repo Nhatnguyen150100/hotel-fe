@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { INew } from "../../types/new.types";
 import newService from "../../services/newService";
 import { Breadcrumb, Empty } from "antd";
@@ -9,7 +9,6 @@ import { formatDate } from "../../utils/format-date";
 import Visibility from "../../components/base/visibility";
 
 export default function NewDetail() {
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [newDetail, setNewDetail] = React.useState<INew>();
 

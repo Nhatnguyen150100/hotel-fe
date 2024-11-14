@@ -1,4 +1,3 @@
-import * as React from "react";
 import { IFacilities } from "../../../../types/facilities.types";
 import BaseModal from "../../../../components/base/BaseModal";
 import { Button, Form, Input, Select } from "antd";

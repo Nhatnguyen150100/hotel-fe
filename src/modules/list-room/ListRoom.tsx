@@ -1,6 +1,6 @@
 import * as React from "react";
 import SearchRoom from "../landing-page/SearchRoom";
-import { Button, Divider, notification, Tooltip } from "antd";
+import { Button, Divider, Tooltip } from "antd";
 import { IFacilitiesRooms, IRoom } from "../../types/room.types";
 import roomService from "../../services/roomService";
 

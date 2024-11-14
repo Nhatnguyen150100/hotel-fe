@@ -1,4 +1,4 @@
-import { Button, FormProps, message, Modal, Spin, Table, TableProps } from "antd";
+import { Button,  message, Modal, Spin, Table, TableProps } from "antd";
 import * as React from "react";
 import BaseSearch from "../../../../components/base/BaseSearch";
 import { IQueryUser } from "../../../../types/user.types";

@@ -1,7 +1,6 @@
 import { Input, message } from "antd";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import axiosRequest from "../../../plugins/request";
 import cookiesStore from "../../../plugins/cookiesStore";
 import GeneralLoading from "../../../components/base/GeneralLoading";
 import { DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";

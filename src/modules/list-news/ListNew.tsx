@@ -1,6 +1,6 @@
 import * as React from "react";
 import newService from "../../services/newService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { INew } from "../../types/new.types";
 import Visibility from "../../components/base/visibility";
 import { Empty, Pagination } from "antd";
@@ -12,7 +12,6 @@ import { DEFINE_ROUTE } from "../../constants/route-mapper";
 
 export default function ListNew() {
   const [newList, setNewList] = React.useState<INew[]>([]);
-  const navigate = useNavigate();
   const [query, setQuery] = React.useState<IBaseQuery>({
     page: 1,
     limit: 10,

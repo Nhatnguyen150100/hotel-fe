@@ -1,6 +1,5 @@
 import * as React from "react";
 import { IQueryUser } from "../../../../types/user.types";
-import roomService from "../../../../services/roomService";
 import { IBooking } from "../../../../types/booking.types";
 import bookingService from "../../../../services/bookingService";
 import { Empty, Spin, Table, TableProps, Tooltip } from "antd";
