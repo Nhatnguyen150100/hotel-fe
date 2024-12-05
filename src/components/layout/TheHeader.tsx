@@ -35,7 +35,7 @@ export default function TheHeader() {
           />
         </div>
         <Link to={DEFINE_ROUTE.home}>
-          <img className="min-h-[100px]" src="/logo.png" alt="logo" />
+          <img className="h-20" src="/logo.png" alt="logo" />
         </Link>
         <div className="absolute right-0 flex flex-row justify-start items-center space-x-2">
           <i className="fa fa-bars"></i>

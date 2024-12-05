@@ -10,7 +10,7 @@ export default function TheHeaderMobile() {
     <header className="w-full header">
       <div className="flex flex-row justify-between items-center px-3 py-2">
         <Link to={DEFINE_ROUTE.home}>
-          <img className="min-h-[50px]" src="/logo.png" alt="logo" />
+          <img className="h-12" src="/logo.png" alt="logo" />
         </Link>
         <Button
           type="text"
@@ -25,7 +25,7 @@ export default function TheHeaderMobile() {
         title={
           <div className="w-full flex justify-center items-center">
             <Link to={DEFINE_ROUTE.home}>
-              <img className="min-h-[50px]" src="/logo.png" alt="logo" />
+              <img className="h-12" src="/logo.png" alt="logo" />
             </Link>
           </div>
         }
