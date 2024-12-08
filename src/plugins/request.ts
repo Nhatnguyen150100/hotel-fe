@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import cookiesStore from "./cookiesStore";
 import showError from "../utils/showError";
+import { DEFINE_ROUTERS_ADMIN } from "../constants/route-mapper";
 
 const API_URL: string | undefined = import.meta.env.VITE_BASE_URL;
 
@@ -26,10 +27,10 @@ const onFulFillResponse = (
 const onRejectResponse = (error: any) => {
   const { data, status } = error.response;
 
-  if (status === 401 || data.status === 403) {
+  if (status === 401 || status === 403) {
     cookiesStore.remove("access_token");
     axiosRequest.defaults.headers.common["Authorization"] = "";
-    // location.href = DEFINE_ROUTERS.auth.login;
+    location.href = DEFINE_ROUTERS_ADMIN.loginAdmin;
   }
   if (!error.response || error.response.status >= 500) {
     return Promise.reject(error);
