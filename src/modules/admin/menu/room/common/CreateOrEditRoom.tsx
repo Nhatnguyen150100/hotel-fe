@@ -18,7 +18,7 @@ import { IFacilities } from "../../../../../types/facilities.types";
 
 interface IProps {
   item?: IRoom;
-  handleSubmit: (data: FormData) => void;
+  handleSubmit: (data: FormData, listImageDelete?: string[]) => void;
 }
 
 type FieldType = {
@@ -53,6 +53,8 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
     img_5: item?.img_5,
     img_6: item?.img_6,
   });
+
+  const [listImageDelete, setListImageDelete] = React.useState<string[]>([]);
 
   const [form] = Form.useForm();
 
@@ -95,19 +97,25 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
     formData.append("weekendPrice", data.weekendPrice?.toString() ?? "");
     formData.append("holidayPrice", data.holidayPrice?.toString() ?? "");
     formData.append("listFacilitiesId", listFacilitiesId.toString() ?? "");
-    const listImg = onRemoveParams(files);
+    const listImg = onRemoveParams(files, [""]);
     if (Object.keys(listImg).length > 0) {
       for (const key in listImg) {
         formData.append(key, listImg[key]);
       }
     }
-    handleSubmit(formData);
+    handleSubmit(formData, listImageDelete.map(imageDelete => imageDelete));
   };
 
-  const handleUploadFile = (file: File | undefined, field: string) => {
+  const handleUploadFile = (file: File | undefined, field: 'img_1' | 'img_2' | 'img_3' | 'img_4' | 'img_5' | 'img_6') => {
+    if(file === undefined && item) {
+      const urlImage = item[field] ?? "";
+      const newArr = listImageDelete;
+      newArr.push(urlImage);
+      setListImageDelete(newArr);
+    }
     setFiles((pre: any) => ({
       ...pre,
-      [field]: file,
+      [field]: file ?? "",
     }));
     setListImg((pre: any) => ({
       ...pre,
@@ -241,7 +249,6 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
             <Form.Item<any>
               label={
                 <div className="text-sm space-x-2">
-                  <span className="text-red-500">*</span>
                   <span>Ảnh của phòng</span>
                 </div>
               }
@@ -249,15 +256,12 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
               <ImgUpload
                 imgProps={listImg.img_1}
                 file={files.img_1}
-                handleUploadFile={(file: File | undefined) =>
-                  handleUploadFile(file, "img_1")
-                }
+                handleUploadFile={(file: File | undefined) => handleUploadFile(file, "img_1")}
               />
             </Form.Item>
             <Form.Item<any>
               label={
                 <div className="text-sm space-x-2">
-                  <span className="text-red-500">*</span>
                   <span>Ảnh của phòng</span>
                 </div>
               }
@@ -273,7 +277,6 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
             <Form.Item<any>
               label={
                 <div className="text-sm space-x-2">
-                  <span className="text-red-500">*</span>
                   <span>Ảnh của phòng</span>
                 </div>
               }
@@ -291,7 +294,6 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
             <Form.Item<any>
               label={
                 <div className="text-sm space-x-2">
-                  <span className="text-red-500">*</span>
                   <span>Ảnh của phòng</span>
                 </div>
               }
@@ -307,7 +309,6 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
             <Form.Item<any>
               label={
                 <div className="text-sm space-x-2">
-                  <span className="text-red-500">*</span>
                   <span>Ảnh của phòng</span>
                 </div>
               }
@@ -323,7 +324,6 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
             <Form.Item<any>
               label={
                 <div className="text-sm space-x-2">
-                  <span className="text-red-500">*</span>
                   <span>Ảnh của phòng</span>
                 </div>
               }

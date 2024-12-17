@@ -9,7 +9,7 @@ import "quill/dist/quill.snow.css";
 
 interface IProps {
   item?: INew;
-  handleSubmit: (data: FormData) => void;
+  handleSubmit: (data: FormData, deleteThumbnail?: string | undefined) => void;
 }
 
 type FieldType = {
@@ -27,6 +27,8 @@ export default function CreateOrEditNew({ item, handleSubmit }: IProps) {
   const { quill, quillRef, Quill } = useQuill({
     modules: { blotFormatter: {} },
   });
+
+  const [deleteThumbnail, setDeleteThumbnail] = React.useState<string>();
 
   const [form] = Form.useForm();
 
@@ -52,10 +54,13 @@ export default function CreateOrEditNew({ item, handleSubmit }: IProps) {
     if (content) {
       formData.append("content", content);
     }
-    handleSubmit(formData);
+    handleSubmit(formData, deleteThumbnail);
   };
 
   const handleUploadFile = (file: File | undefined) => {
+    if(file === undefined && item) {
+      setDeleteThumbnail(item.thumbnailImg);
+    }
     setFile(file);
     setThumbnailImg(undefined);
   };

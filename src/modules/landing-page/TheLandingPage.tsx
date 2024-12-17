@@ -68,16 +68,16 @@ export default function TheLandingPage() {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col w-full justify-start items-center">
-      <div className="w-full">
-        <Carousel autoplay>
-          {DEFINE_IMG_CAROUSEL.map((item) => (
+      <div className="w-full min-h-[540px]">
+        {/* <Carousel autoplay>
+          {DEFINE_IMG_CAROUSEL.map((item, index) => (
             <img
-              key={item}
+              key={index}
               className="w-full h-[540px] object-cover"
               src={item}
             />
           ))}
-        </Carousel>
+        </Carousel> */}
       </div>
       <div className="container space-y-24 my-10 flex flex-col w-full justify-start items-center relative bg-transparent">
         <div className="absolute sm:top-[-100px] top-[-200px]">
@@ -93,9 +93,9 @@ export default function TheLandingPage() {
           />
         </div>
         <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-5 px-4 sm:px-24 pt-[240px] sm:pt-0">
-          {DEFINE_ICON_SLOGAN.map((item) => (
+          {DEFINE_ICON_SLOGAN.map((item, index) => (
             <div
-              key={item.text}
+              key={index}
               className="flex flex-row justify-start items-start space-x-5 transform-hover hover:text-yellow-600 hover:cursor-pointer"
             >
               <img className="w-12 h-12" src={item.icon} />
@@ -135,8 +135,8 @@ export default function TheLandingPage() {
               modules={[Pagination, Autoplay]}
               className="mySwiper"
             >
-              {DEFINE_IMG_SWIPER_GRID.map((item) => (
-                <SwiperSlide key={item.key}>{item}</SwiperSlide>
+              {DEFINE_IMG_SWIPER_GRID.map((item, index) => (
+                <SwiperSlide key={index}>{item}</SwiperSlide>
               ))}
             </Swiper>
           </div>

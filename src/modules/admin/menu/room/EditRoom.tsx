@@ -8,6 +8,7 @@ import CreateOrEditRoom from "./common/CreateOrEditRoom";
 import GeneralLoading from "../../../../components/base/GeneralLoading";
 import { IRoom } from "../../../../types/room.types";
 import Visibility from "../../../../components/base/visibility";
+import imagesService from "../../../../services/imagesService";
 
 export default function EditRoom() {
   const { id } = useParams<{ id: string }>();
@@ -37,10 +38,11 @@ export default function EditRoom() {
     }
   };
 
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async (data: FormData, listImageDelete?: string[]) => {
     try {
       setLoading(true);
       const rs = await roomService.updateRoom(id!, data);
+      if(listImageDelete?.length) await imagesService.deleteImages(listImageDelete)
       message.success(rs.message);
       navigate(-1);
     } catch (error: any) {

@@ -8,6 +8,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import Visibility from '../../../../components/base/visibility';
 import CreateOrEditNew from './common/CreateOrEditNew';
 import GeneralLoading from '../../../../components/base/GeneralLoading';
+import imagesService from '../../../../services/imagesService';
 
 export default function NewDetailAdmin() {
   const {id} = useParams<{id: string}>();
@@ -32,10 +33,11 @@ export default function NewDetailAdmin() {
     }
   };
 
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async (data: FormData, deleteThumbnail?: string | undefined) => {
     try {
       setLoading(true);
       const rs = await newService.updateNew(id!, data);
+      if(deleteThumbnail) await imagesService.deleteImages([deleteThumbnail])
       message.success(rs.message);
       navigate(-1);
     } catch (error: any) {
