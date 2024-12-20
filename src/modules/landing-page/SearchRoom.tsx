@@ -11,18 +11,18 @@ import { useState } from "react";
 import onRemoveParams from "../../utils/on-remove-params";
 
 interface IProps {
-  handleSearch: (startDate: Dayjs | null, endDate:Dayjs | null) => void;
+  handleSearch: (startDate: Dayjs | null, endDate: Dayjs | null) => void;
 }
 
 export default function SearchRoom({handleSearch} : IProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    searchParams.get("startDate")
+    searchParams.get("startDate") !== "null" && searchParams.get("startDate")
       ? dayjs(searchParams.get("startDate"))
       : null
   );
   const [endDate, setEndDate] = useState<Dayjs | null>(
-    searchParams.get("endDate")
+    searchParams.get("endDate") !== "null" && searchParams.get("endDate")
       ? dayjs(searchParams.get("endDate"))
       : null
   );
@@ -57,6 +57,16 @@ export default function SearchRoom({handleSearch} : IProps) {
                   endDate: dates[1],
                 })
               );
+            } else {
+              setStartDate(null);
+              setEndDate(null);
+              setSearchParams(
+                onRemoveParams({
+                  startDate: null,
+                  endDate: null,
+                },[null])
+              );
+              handleSearch(null, null);
             }
           }}
           value={[startDate, endDate]}
