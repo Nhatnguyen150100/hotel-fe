@@ -28,8 +28,6 @@ export default function LoginAdmin() {
       cookiesStore.set("access_token", rs.data.accessToken);
       cookiesStore.set("admin", "admin");
       navigate(DEFINE_ROUTERS_ADMIN.home);
-    } catch (error: any) {
-      message.error("Login failed. Please check your credentials");
     } finally {
       setLoading(false);
     }
@@ -62,6 +60,11 @@ export default function LoginAdmin() {
                             placeholder="User name"
                             className="mb-4"
                             value={form.email}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                onHandleSubmit();
+                              }
+                            }}
                             onChange={(e) => {
                               setForm((pre) => ({
                                 ...pre,
@@ -74,6 +77,11 @@ export default function LoginAdmin() {
                             placeholder="Password"
                             className="mb-4"
                             value={form.password}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                onHandleSubmit();
+                              }
+                            }}
                             onChange={(e: any) => {
                               setForm((pre) => ({
                                 ...pre,

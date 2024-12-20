@@ -13,6 +13,9 @@ import ListNews from "./ListNews";
 import { useNavigate } from "react-router-dom";
 import buildUrlWithParams from "../../utils/build-url-with-param";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
+import * as React from "react";
+import { IBanner } from "../../types/banner.types";
+import bannerService from "../../services/bannerService";
 
 const DEFINE_IMG_CAROUSEL = [
   "/landing_page/landing_page_1.jpg",
@@ -66,18 +69,29 @@ const DEFINE_ICON_SLOGAN = [
 
 export default function TheLandingPage() {
   const navigate = useNavigate();
+  const [listImages, setListImages] = React.useState<IBanner[]>([]);
+
+  const handleGetListImages = async () => {
+    const rs = await bannerService.getAllImagesBanner();
+    setListImages(rs.data.content);
+  };
+
+  React.useEffect(() => {
+    handleGetListImages();
+  }, []);
+
   return (
     <div className="flex flex-col w-full justify-start items-center">
       <div className="w-full min-h-[540px]">
-        {/* <Carousel autoplay>
-          {DEFINE_IMG_CAROUSEL.map((item, index) => (
+        <Carousel autoplay>
+          {listImages.map((item) => (
             <img
-              key={index}
-              className="w-full h-[540px] object-cover"
-              src={item}
+              key={item.id}
+              className="w-full h-[580px] object-cover"
+              src={item.url}
             />
           ))}
-        </Carousel> */}
+        </Carousel>
       </div>
       <div className="container space-y-24 my-10 flex flex-col w-full justify-start items-center relative bg-transparent">
         <div className="absolute sm:top-[-100px] top-[-200px]">

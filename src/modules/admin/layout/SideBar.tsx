@@ -6,6 +6,7 @@ import {
   AppstoreAddOutlined,
   PieChartOutlined,
   FormOutlined,
+  FileImageOutlined,
 } from "@ant-design/icons";
 import isChildUrl from "../../../utils/check-active-router";
 import { DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";
@@ -19,6 +20,11 @@ const Sidebar = () => {
       path: DEFINE_ROUTERS_ADMIN.bookingManager,
       label: "Danh sách đặt phòng",
       icon: <PieChartOutlined />,
+    },
+    {
+      path: DEFINE_ROUTERS_ADMIN.bannerManager,
+      label: "Quản lý ảnh bìa",
+      icon: <FileImageOutlined />,
     },
     {
       path: DEFINE_ROUTERS_ADMIN.roomManager,

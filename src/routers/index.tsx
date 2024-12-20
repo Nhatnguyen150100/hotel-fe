@@ -19,6 +19,7 @@ import NewManager from "../modules/admin/menu/new/NewManager";
 import ListNew from "../modules/list-news/ListNew";
 import NewDetail from "../modules/new-detail/NewDetail";
 import NewDetailAdmin from "../modules/admin/menu/new/NewDetailAdmin";
+import BannerManager from "../modules/admin/menu/banner/BannerManager";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: DEFINE_ROUTERS_ADMIN.bookingManager,
         element: <BookingManager />,
+      },
+      {
+        path: DEFINE_ROUTERS_ADMIN.bannerManager,
+        element: <BannerManager />,
       },
       {
         path: DEFINE_ROUTERS_ADMIN.createNew,

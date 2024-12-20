@@ -9,6 +9,7 @@ const DEFINE_ROUTE = {
 
 const DEFINE_ROUTERS_ADMIN = {
   home: "/admin",
+  bannerManager: "/admin/banner-manager",
   facilitiesManager: "/admin/facilities-manager",
   newsManager: "/admin/news-manager",
   createNew: "/admin/news-manager/new-news",
