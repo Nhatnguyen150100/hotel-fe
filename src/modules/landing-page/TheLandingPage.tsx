@@ -1,4 +1,4 @@
-import { Carousel } from "antd";
+import { Carousel, Empty, Spin } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -10,43 +10,51 @@ import ImageHover from "../../components/base/ImageHover";
 import ListRoomLandingPage from "./ListRoomLandingPage";
 import SearchRoom from "./SearchRoom";
 import ListNews from "./ListNews";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import buildUrlWithParams from "../../utils/build-url-with-param";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
 import * as React from "react";
 import { IBanner } from "../../types/banner.types";
 import bannerService from "../../services/bannerService";
+import { INew } from "../../types/new.types";
+import destinationService from "../../services/destinationService";
+import Visibility from "../../components/base/visibility";
+import router from "../../routers";
 
-const DEFINE_IMG_CAROUSEL = [
-  "/landing_page/landing_page_1.jpg",
-  "/landing_page/landing_page_2.jpg",
-  "/landing_page/landing_page_3.jpg",
-  "/landing_page/landing_page_4.jpg",
+const images = [
+  "/landing_page/swiper-grid/swiper_grid_1.jpg",
+  "/landing_page/swiper-grid/swiper_grid_2.jpg",
+  "/landing_page/swiper-grid/swiper_grid_3.jpg",
 ];
 
-const DEFINE_IMG_SWIPER_GRID = [
-  <div className="h-[620px]">
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_1.jpg" />
-  </div>,
-  <div className="flex flex-col justify-between items-center space-y-5 h-[620px]">
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_2.jpg" />
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_3.jpg" />
-  </div>,
-  <div className="h-[620px]">
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_4.jpg" />
-  </div>,
-  <div className="flex flex-col justify-between items-center space-y-5 h-[620px]">
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_5.jpg" />
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_6.jpg" />
-  </div>,
-  <div className="h-[620px]">
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_7.jpg" />
-  </div>,
-  <div className="flex flex-col justify-between items-center space-y-5 h-[620px]">
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_8.jpg" />
-    <ImageHover src="/landing_page/swiper-grid/swiper_grid_9.jpg" />
-  </div>,
-];
+const DEFINE_IMG_SWIPER_GRID = images
+  .map((src, index) => {
+    // Dùng điều kiện để xác định loại bố cục
+    if (index % 3 === 0) {
+      return (
+        <div className="h-[620px]" key={index}>
+          <ImageHover src={src} />
+        </div>
+      );
+    } else if (index % 3 === 1 || index % 3 === 2) {
+      if (index % 3 === 1) {
+        return (
+          <div
+            className="flex flex-col justify-between items-center space-y-5 h-[620px]"
+            key={index}
+          >
+            <ImageHover src={src} />
+            {/* Thêm ảnh tiếp theo nếu có */}
+            {index + 1 < images.length && (
+              <ImageHover src={images[index + 1]} />
+            )}
+          </div>
+        );
+      }
+    }
+    return null; // Không trả về gì nếu không thuộc điều kiện
+  })
+  .filter(Boolean); // Lọc các giá trị null
 
 const DEFINE_ICON_SLOGAN = [
   {
@@ -70,14 +78,72 @@ const DEFINE_ICON_SLOGAN = [
 export default function TheLandingPage() {
   const navigate = useNavigate();
   const [listImages, setListImages] = React.useState<IBanner[]>([]);
+  const [listDestinations, setListDestinations] = React.useState<INew[]>([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const handleGetListDestination = async () => {
+    try {
+      setLoading(true);
+      const rs = await destinationService.getAllNew();
+      setListDestinations(rs.data.content);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const listDestinationsConvert = React.useMemo(() => {
+    if (!listDestinations) return [];
+    const tempList = [...listDestinations];
+    return tempList
+      .map((_item, index) => {
+        if (index % 3 === 0) {
+          return (
+            <div className="h-[620px]" key={_item.id}>
+              <Link to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}>
+                <ImageHover src={_item.thumbnailImg} />
+              </Link>
+            </div>
+          );
+        } else if (index % 3 === 1 || index % 3 === 2) {
+          if (index % 3 === 1) {
+            return (
+              <div
+                className="flex flex-col justify-between items-center space-y-5 h-[620px]"
+                key={index}
+              >
+                <Link to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}>
+                  <ImageHover src={_item.thumbnailImg} />
+                </Link>
+                {index + 1 < tempList.length && (
+                  <Link to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}>
+                    <ImageHover
+                      src={tempList[index + 1].thumbnailImg}
+                    />
+                  </Link>
+                )}
+              </div>
+            );
+          }
+        }
+        return null;
+      })
+      .filter(Boolean);
+    console.log("🚀 ~ listDestinationsConvert ~ tempList:", tempList);
+  }, [listDestinations]);
 
   const handleGetListImages = async () => {
-    const rs = await bannerService.getAllImagesBanner();
-    setListImages(rs.data.content);
+    try {
+      setLoading(true);
+      const rs = await bannerService.getAllImagesBanner();
+      setListImages(rs.data.content);
+    } finally {
+      setLoading(false);
+    }
   };
 
   React.useEffect(() => {
     handleGetListImages();
+    handleGetListDestination();
   }, []);
 
   return (
@@ -126,33 +192,38 @@ export default function TheLandingPage() {
             nổi bật
           </span>
           <div className="min-h-[120px] w-full">
-            <Swiper
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              loop={true}
-              slidesPerView={1}
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                },
-                768: {
-                  slidesPerView: 3,
-                },
-              }}
-              style={{ paddingBottom: "50px" }}
-              modules={[Pagination, Autoplay]}
-              className="mySwiper"
+            <Visibility
+              visibility={listDestinations}
+              suspenseComponent={loading ? <Spin /> : <Empty />}
             >
-              {DEFINE_IMG_SWIPER_GRID.map((item, index) => (
-                <SwiperSlide key={index}>{item}</SwiperSlide>
-              ))}
-            </Swiper>
+              <Swiper
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                loop={true}
+                slidesPerView={1}
+                spaceBetween={30}
+                pagination={{
+                  clickable: true,
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                  },
+                }}
+                style={{ paddingBottom: "50px" }}
+                modules={[Pagination, Autoplay]}
+                className="mySwiper"
+              >
+                {listDestinationsConvert?.map((_item, index) => (
+                  <SwiperSlide key={index}>{_item}</SwiperSlide>
+                ))}
+              </Swiper>
+            </Visibility>
           </div>
           <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
             Xem thêm

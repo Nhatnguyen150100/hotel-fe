@@ -108,8 +108,8 @@ export default function BookingPage() {
             name="form"
             onFinish={onFinish}
             initialValues={{
-              startDate: startDate ? dayjs(startDate) : null,
-              endDate: endDate ? dayjs(endDate) : null,
+              startDate: startDate !== "null" ? dayjs(startDate) : dayjs(),
+              endDate: endDate !== "null" ? dayjs(endDate) : dayjs(),
             }}
             autoComplete="off"
           >

@@ -29,3 +29,13 @@ body {
   height: 100%;
   scroll-behavior: smooth;
 }
+
+.hover-grow {
+  display: inline-block;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.hover-grow:hover {
+  transform: scale(1.1);
+}

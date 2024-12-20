@@ -1,9 +1,6 @@
 import {
-  FacebookFilled,
-  InstagramFilled,
   MailFilled,
   PhoneFilled,
-  YoutubeFilled,
 } from "@ant-design/icons";
 import { Divider } from "antd";
 
@@ -52,10 +49,10 @@ export default function TheFooter() {
             <div className="flex items-center space-x-2">
               <img className="h-[24px]" src="/zalo-icon.png" alt="Zalo Icon" />
               <a
-                href="https://zalo.me/0943 896 555"
+                href="https://zalo.me/0945.293.201"
                 className="text-[var(--color-text-footer)] hover:text-white hover:underline"
               >
-                Zalo: 0943 896 555
+                Zalo: 0945.293.201
               </a>
             </div>
             <div className="flex items-center space-x-2">
@@ -95,18 +92,20 @@ export default function TheFooter() {
           KHÁCH SẠN PHƯỢNG HOÀNG 2
         </h3>
         <div className="flex justify-center md:justify-start items-center space-x-3 absolute right-0 hidden md:block">
-          <FacebookFilled
-            className="hover:!text-yellow-600 hover:cursor-pointer"
-            style={{ fontSize: "26px", color: "white" }}
-          />
-          <InstagramFilled
-            className="hover:!text-yellow-600 hover:cursor-pointer"
-            style={{ fontSize: "26px", color: "white" }}
-          />
-          <YoutubeFilled
-            className="hover:!text-yellow-600 hover:cursor-pointer"
-            style={{ fontSize: "26px", color: "white" }}
-          />
+          <a href="#">
+            <img
+              src="/icons/facebook.png"
+              className="h-[24px] cursor-pointer hover-grow"
+              alt="facebook"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="/icons/tik-tok.png"
+              className="h-[24px] cursor-pointer hover-grow"
+              alt="tik-tok"
+            />
+          </a>
         </div>
       </div>
     </footer>

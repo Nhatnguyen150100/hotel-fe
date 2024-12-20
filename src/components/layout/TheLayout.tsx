@@ -10,7 +10,7 @@ import TheHeaderMobile from "./mobile/TheHeaderMobile";
 export default function TheLayout() {
   const isMobile = useSelector((state: IRootState) => state.general.isMobile);
   return (
-    <div className="h-screen w-full flex flex-col justify-start items-center overflow-y-auto bg-[#f4f4f5]">
+    <div className="h-screen w-full flex flex-col justify-start items-center bg-[#f4f4f5]">
       <Visibility
         visibility={!isMobile}
         suspenseComponent={<TheHeaderMobile />}

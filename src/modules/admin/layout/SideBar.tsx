@@ -7,6 +7,7 @@ import {
   PieChartOutlined,
   FormOutlined,
   FileImageOutlined,
+  AimOutlined,
 } from "@ant-design/icons";
 import isChildUrl from "../../../utils/check-active-router";
 import { DEFINE_ROUTERS_ADMIN } from "../../../constants/route-mapper";
@@ -40,6 +41,11 @@ const Sidebar = () => {
       path: DEFINE_ROUTERS_ADMIN.newsManager,
       label: "Quản lý bài viết",
       icon: <FormOutlined />,
+    },
+    {
+      path: DEFINE_ROUTERS_ADMIN.destinationsManager,
+      label: "Quản lý điểm đến",
+      icon: <AimOutlined />
     },
   ];
 

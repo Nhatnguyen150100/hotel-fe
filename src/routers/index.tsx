@@ -20,6 +20,10 @@ import ListNew from "../modules/list-news/ListNew";
 import NewDetail from "../modules/new-detail/NewDetail";
 import NewDetailAdmin from "../modules/admin/menu/new/NewDetailAdmin";
 import BannerManager from "../modules/admin/menu/banner/BannerManager";
+import DestinationsManager from "../modules/admin/menu/destination/DestinationsManager";
+import DestinationDetailAdmin from "../modules/admin/menu/destination/DestinationDetailAdmin";
+import CreateDestination from "../modules/admin/menu/destination/CreateDestination";
+import DestinationDetail from "../modules/destination-detail/DestinationDetail";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: DEFINE_ROUTE.newDetail,
         element: <NewDetail />,
+      },
+      {
+        path: DEFINE_ROUTE.destinationDetail,
+        element: <DestinationDetail />,
       },
       {
         path: DEFINE_ROUTE.roomDetail,
@@ -75,12 +83,24 @@ const router = createBrowserRouter([
         element: <CreateNew />,
       },
       {
+        path: DEFINE_ROUTERS_ADMIN.createDestination,
+        element: <CreateDestination />,
+      },
+      {
         path: DEFINE_ROUTERS_ADMIN.newDetail,
         element: <NewDetailAdmin />,
       },
       {
+        path: DEFINE_ROUTERS_ADMIN.destinationDetail,
+        element: <DestinationDetailAdmin />,
+      },
+      {
         path: DEFINE_ROUTERS_ADMIN.newsManager,
         element: <NewManager />,
+      },
+      {
+        path: DEFINE_ROUTERS_ADMIN.destinationsManager,
+        element: <DestinationsManager />,
       },
       {
         path: DEFINE_ROUTERS_ADMIN.roomManager,

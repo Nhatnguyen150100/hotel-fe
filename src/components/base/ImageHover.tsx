@@ -3,17 +3,18 @@ import React from "react";
 interface ImageHoverProps {
   src: string;
   alt?: string;
-  className?: string; // Additional class name for the image container
+  className?: string;
+  [x: string]: any;
 }
 
 const ImageHover: React.FC<ImageHoverProps> = (
-  { src, alt, className },
-  ...props
+  { src, alt, className, ...props },
+  
 ) => {
   return (
     <div className={`image-container h-full w-full ${className}`}>
       <img
-        className="image !h-full object-cover"
+        className="image !h-full object-cover hover:cursor-pointer"
         src={src}
         alt={alt ?? "img"}
         {...props}
