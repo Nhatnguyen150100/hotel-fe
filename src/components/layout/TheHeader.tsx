@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
 import { Button } from "antd";
+import { useEffect } from "react";
 
 export default function TheHeader() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <header className={`w-full header`}>
       <div className="flex flex-row justify-center items-center w-full relative container">
