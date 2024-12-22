@@ -39,6 +39,25 @@ const DEFINE_ICON_SLOGAN = [
   },
 ];
 
+const DEFINE_IMG_CAROUSEL = [
+  {
+    id: 1,
+    url: "/landing_page/landing_page_1.jpg",
+  },
+  {
+    id: 2,
+    url: "/landing_page/landing_page_2.jpg",
+  },
+  {
+    id: 3,
+    url: "/landing_page/landing_page_3.jpg",
+  },
+  {
+    id: 4,
+    url: "/landing_page/landing_page_4.jpg",
+  },
+];
+
 export default function TheLandingPage() {
   const navigate = useNavigate();
   const [listImages, setListImages] = React.useState<IBanner[]>([]);
@@ -96,7 +115,6 @@ export default function TheLandingPage() {
         return null;
       })
       .filter(Boolean);
-    console.log("🚀 ~ listDestinationsConvert ~ tempList:", tempList);
   }, [listDestinations]);
 
   const handleGetListImages = async () => {
@@ -118,13 +136,15 @@ export default function TheLandingPage() {
     <div className="flex flex-col w-full justify-start items-center">
       <div className="w-full min-h-[540px]">
         <Carousel autoplay>
-          {listImages.map((item) => (
-            <img
-              key={item.id}
-              className="w-full h-[580px] object-cover"
-              src={item.url}
-            />
-          ))}
+          {(listImages.length ? listImages : DEFINE_IMG_CAROUSEL).map(
+            (item) => (
+              <img
+                key={item.id}
+                className="w-full h-[580px] object-cover"
+                src={item.url}
+              />
+            )
+          )}
         </Carousel>
       </div>
       <div className="container space-y-24 my-10 flex flex-col w-full justify-start items-center relative bg-transparent">
