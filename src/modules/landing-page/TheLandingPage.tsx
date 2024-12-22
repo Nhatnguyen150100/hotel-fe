@@ -19,42 +19,6 @@ import bannerService from "../../services/bannerService";
 import { INew } from "../../types/new.types";
 import destinationService from "../../services/destinationService";
 import Visibility from "../../components/base/visibility";
-import router from "../../routers";
-
-const images = [
-  "/landing_page/swiper-grid/swiper_grid_1.jpg",
-  "/landing_page/swiper-grid/swiper_grid_2.jpg",
-  "/landing_page/swiper-grid/swiper_grid_3.jpg",
-];
-
-const DEFINE_IMG_SWIPER_GRID = images
-  .map((src, index) => {
-    // Dùng điều kiện để xác định loại bố cục
-    if (index % 3 === 0) {
-      return (
-        <div className="h-[620px]" key={index}>
-          <ImageHover src={src} />
-        </div>
-      );
-    } else if (index % 3 === 1 || index % 3 === 2) {
-      if (index % 3 === 1) {
-        return (
-          <div
-            className="flex flex-col justify-between items-center space-y-5 h-[620px]"
-            key={index}
-          >
-            <ImageHover src={src} />
-            {/* Thêm ảnh tiếp theo nếu có */}
-            {index + 1 < images.length && (
-              <ImageHover src={images[index + 1]} />
-            )}
-          </div>
-        );
-      }
-    }
-    return null; // Không trả về gì nếu không thuộc điều kiện
-  })
-  .filter(Boolean); // Lọc các giá trị null
 
 const DEFINE_ICON_SLOGAN = [
   {
@@ -99,7 +63,9 @@ export default function TheLandingPage() {
         if (index % 3 === 0) {
           return (
             <div className="h-[620px]" key={_item.id}>
-              <Link to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}>
+              <Link
+                to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}
+              >
                 <ImageHover src={_item.thumbnailImg} />
               </Link>
             </div>
@@ -111,14 +77,16 @@ export default function TheLandingPage() {
                 className="flex flex-col justify-between items-center space-y-5 h-[620px]"
                 key={index}
               >
-                <Link to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}>
+                <Link
+                  to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}
+                >
                   <ImageHover src={_item.thumbnailImg} />
                 </Link>
                 {index + 1 < tempList.length && (
-                  <Link to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}>
-                    <ImageHover
-                      src={tempList[index + 1].thumbnailImg}
-                    />
+                  <Link
+                    to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}
+                  >
+                    <ImageHover src={tempList[index + 1].thumbnailImg} />
                   </Link>
                 )}
               </div>
