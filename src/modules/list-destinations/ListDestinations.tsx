@@ -1,5 +1,4 @@
 import * as React from "react";
-import newService from "../../services/newService";
 import { Link } from "react-router-dom";
 import { INew } from "../../types/new.types";
 import Visibility from "../../components/base/visibility";
@@ -9,8 +8,9 @@ import { IBaseQuery } from "../../types/query.types";
 import { ScheduleOutlined } from "@ant-design/icons";
 import { formatDate } from "../../utils/format-date";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
+import destinationService from "../../services/destinationService";
 
-export default function ListNew() {
+export default function ListDestinations() {
   const [newList, setNewList] = React.useState<INew[]>([]);
   const [query, setQuery] = React.useState<IBaseQuery>({
     page: 1,
@@ -18,7 +18,7 @@ export default function ListNew() {
   });
 
   const handleGetNewList = async (queryParam = query) => {
-    const rs = await newService.getAllNew(queryParam);
+    const rs = await destinationService.getAllNew(queryParam);
     setNewList(rs.data.content);
     setQuery({
       ...queryParam,
@@ -43,9 +43,7 @@ export default function ListNew() {
 
   return (
     <div className="py-5 w-full container bg-transparent space-y-10">
-      <h1 className="text-blue-800 text-3xl font-semibold">
-        Danh sách tin tức
-      </h1>
+      <h1 className="text-blue-800 text-3xl font-semibold">Điểm đến nổi bật</h1>
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-10">
         <Visibility
           visibility={Boolean(newList.length)}

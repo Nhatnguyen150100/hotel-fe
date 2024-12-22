@@ -213,7 +213,12 @@ export default function TheLandingPage() {
               </Swiper>
             </Visibility>
           </div>
-          <button className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]">
+          <button
+            onClick={() => {
+              navigate(DEFINE_ROUTE.listDestinations);
+            }}
+            className="hover:text-white hover:bg-yellow-600 text-yellow-600 font-light text-lg flex justify-center items-center border border-solid rounded-3xl border-yellow-600 px-3 py-2 min-w-[220px]"
+          >
             Xem thêm
           </button>
         </div>

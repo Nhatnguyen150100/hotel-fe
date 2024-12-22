@@ -24,6 +24,7 @@ import DestinationsManager from "../modules/admin/menu/destination/DestinationsM
 import DestinationDetailAdmin from "../modules/admin/menu/destination/DestinationDetailAdmin";
 import CreateDestination from "../modules/admin/menu/destination/CreateDestination";
 import DestinationDetail from "../modules/destination-detail/DestinationDetail";
+import ListDestinations from "../modules/list-destinations/ListDestinations";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: DEFINE_ROUTE.listNews,
         element: <ListNew />,
+      },
+      {
+        path: DEFINE_ROUTE.listNews,
+        element: <ListNew />,
+      },
+      {
+        path: DEFINE_ROUTE.listDestinations,
+        element: <ListDestinations />,
       },
       {
         path: DEFINE_ROUTE.newDetail,

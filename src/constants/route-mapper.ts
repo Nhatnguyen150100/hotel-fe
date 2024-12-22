@@ -2,6 +2,7 @@ const DEFINE_ROUTE = {
   home: "/",
   listRoom: "/list-rooms",
   listNews: "/list-news",
+  listDestinations: "/list-destinations",
   newDetail: "/new-detail/:id",
   destinationDetail: "/destination-detail/:id",
   roomDetail: "/room-detail/:id",
