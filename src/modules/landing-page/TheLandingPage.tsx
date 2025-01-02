@@ -27,11 +27,11 @@ const DEFINE_ICON_SLOGAN = [
   },
   {
     icon: "/landing_page/icon_slogan_2.svg",
-    text: "Đa dạng điểm đến lựa chọn tốt nhất",
+    text: "Hỗ trợ di chuyển thuận tiện ở cả thành phố và sầm sơn",
   },
   {
     icon: "/landing_page/icon_slogan_3.svg",
-    text: "Đảm bảo chất lượng phục vụ tốt nhất",
+    text: "Phục vụ tour và hội nghị, đám cưới chuyên nghiệp",
   },
   {
     icon: "/landing_page/icon_slogan_4.svg",
@@ -73,49 +73,6 @@ export default function TheLandingPage() {
       setLoading(false);
     }
   };
-
-  const listDestinationsConvert = React.useMemo(() => {
-    if (!listDestinations) return [];
-    const tempList = [...listDestinations];
-    return tempList
-      .map((_item, index) => {
-        if (index % 3 === 0) {
-          return (
-            <div className="h-[620px]" key={_item.id}>
-              <Link
-                to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}
-              >
-                <ImageHover src={_item.thumbnailImg} />
-              </Link>
-            </div>
-          );
-        } else if (index % 3 === 1 || index % 3 === 2) {
-          if (index % 3 === 1) {
-            return (
-              <div
-                className="flex flex-col justify-between items-center space-y-5 h-[620px]"
-                key={index}
-              >
-                <Link
-                  to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}
-                >
-                  <ImageHover src={_item.thumbnailImg} />
-                </Link>
-                {index + 1 < tempList.length && (
-                  <Link
-                    to={DEFINE_ROUTE.destinationDetail.replace(":id", _item.id)}
-                  >
-                    <ImageHover src={tempList[index + 1].thumbnailImg} />
-                  </Link>
-                )}
-              </div>
-            );
-          }
-        }
-        return null;
-      })
-      .filter(Boolean);
-  }, [listDestinations]);
 
   const handleGetListImages = async () => {
     try {
@@ -175,9 +132,15 @@ export default function TheLandingPage() {
         </div>
         <ListRoomLandingPage />
         <div className="flex flex-col justify-start items-center w-full space-y-10">
+          <img
+            width="200"
+            height="60"
+            src="./icontieude.png"
+            alt="Icon tiêu đề"
+          />
           <span className="uppercase text-[32px] sm:text-[40px] font-normal">
-            <strong className="me-2">điểm đến</strong>
-            nổi bật
+            <strong className="me-2">khoảnh khắc</strong>
+            đáng nhớ
           </span>
           <div className="min-h-[120px] w-full">
             <Visibility
@@ -207,8 +170,19 @@ export default function TheLandingPage() {
                 modules={[Pagination, Autoplay]}
                 className="mySwiper"
               >
-                {listDestinationsConvert?.map((_item, index) => (
-                  <SwiperSlide key={index}>{_item}</SwiperSlide>
+                {listDestinations?.map((_item) => (
+                  <SwiperSlide key={_item.id}>
+                    <div className="h-[360px]">
+                      <Link
+                        to={DEFINE_ROUTE.destinationDetail.replace(
+                          ":id",
+                          _item.id
+                        )}
+                      >
+                        <ImageHover src={_item.thumbnailImg} />
+                      </Link>
+                    </div>
+                  </SwiperSlide>
                 ))}
               </Swiper>
             </Visibility>

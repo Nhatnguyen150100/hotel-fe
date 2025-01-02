@@ -1,4 +1,13 @@
-import { Button, FormProps, message, Spin, Table, TableProps } from "antd";
+import {
+  Button,
+  FormProps,
+  message,
+  Modal,
+  notification,
+  Spin,
+  Table,
+  TableProps,
+} from "antd";
 import * as React from "react";
 import BaseSearch from "../../../../components/base/BaseSearch";
 import { IQueryUser } from "../../../../types/user.types";
@@ -60,16 +69,38 @@ export default function FacilitiesManager() {
   };
 
   const handleDeleteFacility = async (_facility: IFacilities) => {
-    try {
-      setLoading(true);
-      const rs = await facilitiesService.deleteFacility(_facility.id);
-      message.success(rs.message);
-      handleGetFacilitiesList();
-    } catch (error: any) {
-      message.error(error.message);
-    } finally {
-      setLoading(false);
-    }
+    Modal.confirm({
+      title: "Bạn có muốn xóa tiện ích này này?",
+      content: (
+        <div className="flex flex-col justify-start items-start space-y-3 mb-5">
+          <span className="text-lg font-semibold">
+            Tên tiện ích: {_facility.name}
+          </span>
+          <span className="text-lg font-semibold">Icon: {_facility.icon}</span>
+        </div>
+      ),
+      okText: "Đồng ý",
+      okType: "primary",
+      cancelText: "Hủy",
+      style: {
+        top: "50%",
+        transform: "translateY(-50%)",
+      },
+      onOk: async () => {
+        try {
+          setLoading(true);
+          const rs = await facilitiesService.deleteFacility(_facility.id);
+          message.success(rs.message);
+          notification.success({
+            message: "Thành công",
+            description: rs.message,
+          });
+          handleGetFacilitiesList();
+        } finally {
+          setLoading(false);
+        }
+      },
+    });
   };
 
   React.useEffect(() => {

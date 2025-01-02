@@ -1,7 +1,4 @@
-import {
-  MailFilled,
-  PhoneFilled,
-} from "@ant-design/icons";
+import { MailFilled, PhoneFilled } from "@ant-design/icons";
 import { Divider } from "antd";
 
 export default function TheFooter() {
@@ -92,14 +89,20 @@ export default function TheFooter() {
           KHÁCH SẠN PHƯỢNG HOÀNG 2
         </h3>
         <div className="flex justify-center md:justify-start items-center space-x-3 absolute right-0 hidden md:block">
-          <a href="#">
+          <a
+            href="https://www.facebook.com/khachsanphuonghoangsamson"
+            target="_blank"
+          >
             <img
               src="/icons/facebook.png"
               className="h-[24px] cursor-pointer hover-grow"
               alt="facebook"
             />
           </a>
-          <a href="#">
+          <a
+            href="https://www.tiktok.com/@ksphuonghoang2samson"
+            target="_blank"
+          >
             <img
               src="/icons/tik-tok.png"
               className="h-[24px] cursor-pointer hover-grow"

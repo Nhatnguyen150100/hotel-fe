@@ -7,14 +7,20 @@ export default function TheHeader() {
     <header className={`w-full header`}>
       <div className="flex flex-row justify-center items-center w-full relative container">
         <div className="flex justify-start items-center space-x-3 absolute left-0">
-          <a href="#">
+          <a
+            href="https://www.facebook.com/khachsanphuonghoangsamson"
+            target="_blank"
+          >
             <img
               src="/icons/facebook.png"
               className="h-[24px] cursor-pointer hover-grow"
               alt="facebook"
             />
           </a>
-          <a href="#">
+          <a
+            href="https://www.tiktok.com/@ksphuonghoang2samson"
+            target="_blank"
+          >
             <img
               src="/icons/tik-tok.png"
               className="h-[24px] cursor-pointer hover-grow"

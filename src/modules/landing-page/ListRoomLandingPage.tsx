@@ -8,7 +8,7 @@ import "swiper/css/grid";
 import ImageHover from "../../components/base/ImageHover";
 import { formatCurrency } from "../../utils/format-money";
 import * as React from "react";
-import { IRoom } from "../../types/room.types";
+import { IFacilitiesRooms, IRoom } from "../../types/room.types";
 import roomService from "../../services/roomService";
 import { Link, useNavigate } from "react-router-dom";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
@@ -33,6 +33,12 @@ export default function ListRoomLandingPage() {
   return (
     <Visibility visibility={listRoom.length > 0}>
       <div className="flex flex-col justify-start items-center w-full space-y-10 max-w-[1220px]">
+        <img
+          width="200"
+          height="60"
+          src="./icontieude.png"
+          alt="Icon tiêu đề"
+        />
         <span className="uppercase text-[32px] sm:text-[40px] font-normal">
           <strong className="me-2">ưu đãi</strong>
           dành cho bạn
@@ -64,15 +70,45 @@ export default function ListRoomLandingPage() {
             {listRoom.map((item) => (
               <SwiperSlide key={item.id}>
                 <div className="flex flex-col justify-start items-start space-y-3 bg-[#f4f4f5]">
-                  <div className="h-[250px] w-[380px]">
+                  <div className="h-[250px] max-w-[380px]">
                     <ImageHover
                       src={item.img_1 ?? "/landing_page/swipper/swipper_1.jpg"}
                       alt="img"
                     />
                   </div>
-                  <Link to={DEFINE_ROUTE.roomDetail.replace(":id", item.id)} className="w-full text-lg font-semibold text-start first-letter:capitalize hover:text-yellow-600 hover:cursor-pointer">
+                  <Link
+                    to={DEFINE_ROUTE.roomDetail.replace(":id", item.id)}
+                    className="w-full text-xl font-semibold text-start first-letter:capitalize hover:text-yellow-600 hover:cursor-pointer"
+                  >
                     {item.name}
                   </Link>
+                  <div className="flex flex-col justify-start items-start w-full space-y-1">
+                    <span className="text-base font-bold mb-3 text-red-700">
+                      Các tiện ích có trong phòng
+                    </span>
+                    <div className="grid grid-cols-3 gap-y-3 w-full">
+                      <Visibility
+                        visibility={Boolean(item?.facilitiesRooms?.length)}
+                      >
+                        {item?.facilitiesRooms?.map(
+                          (facility: IFacilitiesRooms) => (
+                            <div
+                              key={facility.id}
+                              className="flex items-center space-x-2"
+                            >
+                              <img
+                                className="!h-5 !w-5"
+                                src={`/icon-facilities/${facility.facility.icon}.png`}
+                              />
+                              <span className="text-base">
+                                {facility.facility.name}
+                              </span>
+                            </div>
+                          )
+                        )}
+                      </Visibility>
+                    </div>
+                  </div>
                   <div className="flex flex-row justify-start items-center">
                     <span className="font-semibold text-2xl text-yellow-600">
                       <span className="text-base text-black italic font-normal">

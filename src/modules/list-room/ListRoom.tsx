@@ -101,7 +101,7 @@ export default function ListRoom() {
                 <div className="flex flex-col justify-start items-start space-y-4 grow">
                   <Tooltip title="Nhấn để xem chi tiết">
                     <h1
-                      className="text-2xl font-semibold hover:text-blue-700 hover:cursor-pointer hover:underline"
+                      className="text-2xl font-semibold hover:text-yellow-600 hover:cursor-pointer"
                       onClick={() => {
                         navigate(
                           DEFINE_ROUTE.roomDetail.replace(":id", room.id)

@@ -36,6 +36,7 @@ export default function ListNews() {
 
   return (
     <div className="flex flex-col justify-start items-center w-full space-y-10">
+      <img width="200" height="60" src="./icontieude.png" alt="Icon tiêu đề" />
       <span className="uppercase text-[32px] sm:text-[40px] font-normal">
         <strong className="me-2">tin tức</strong>
         nổi bật
@@ -61,7 +62,10 @@ export default function ListNews() {
                   <ImageHover src={item.thumbnailImg} alt="img" />
                 )}
 
-                <Link to={DEFINE_ROUTE.newDetail.replace(":id", item.id)} className="w-full text-lg font-semibold text-start hover:text-yellow-600">
+                <Link
+                  to={DEFINE_ROUTE.newDetail.replace(":id", item.id)}
+                  className="w-full text-lg font-semibold text-start hover:text-yellow-600"
+                >
                   {item.name}
                 </Link>
                 <span className="w-full whitespace-pre-wrap">

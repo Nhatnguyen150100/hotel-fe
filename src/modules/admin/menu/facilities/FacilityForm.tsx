@@ -20,6 +20,18 @@ const OPTIONS_SELECT_ICON = [
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
           className="h-[24px] w-[24px]"
+          src="/icon-facilities/view_city.png"
+        />
+        <span>View City</span>
+      </div>
+    ),
+    value: "view_city",
+  },
+  {
+    label: (
+      <div className="flex flex-row justify-start items-center space-x-3">
+        <img
+          className="h-[24px] w-[24px]"
           src="/icon-facilities/ban_lam_viec.png"
         />
         <span>Bàn làm việc</span>
@@ -49,9 +61,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/dien_thoai.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/dien_thoai.png"
+        />
         <span>Điện thoại</span>
       </div>
     ),
@@ -60,7 +72,10 @@ const OPTIONS_SELECT_ICON = [
   {
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
-        <img className="h-[24px] w-[24px]" src="/icon-facilities/dieu_hoa.png" />
+        <img
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/dieu_hoa.png"
+        />
         <span>Điều hòa</span>
       </div>
     ),
@@ -70,9 +85,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/do_phong_tam.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/do_phong_tam.png"
+        />
         <span>Đồ phòng tắm</span>
       </div>
     ),
@@ -81,7 +96,10 @@ const OPTIONS_SELECT_ICON = [
   {
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
-        <img className="h-[24px] w-[24px]" src="/icon-facilities/ga_giuong.png" />
+        <img
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/ga_giuong.png"
+        />
         <span>Ga giường</span>
       </div>
     ),
@@ -108,7 +126,10 @@ const OPTIONS_SELECT_ICON = [
   {
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
-        <img className="h-[24px] w-[24px]" src="/icon-facilities/khan_tam.png" />
+        <img
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/khan_tam.png"
+        />
         <span>Khăn tắm</span>
       </div>
     ),
@@ -118,9 +139,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/khong_hut_thuoc.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/khong_hut_thuoc.png"
+        />
         <span>Không hút thuốc</span>
       </div>
     ),
@@ -130,9 +151,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/may_say_toc.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/may_say_toc.png"
+        />
         <span>Máy sấy tóc</span>
       </div>
     ),
@@ -142,9 +163,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/phong_tam_voi_hoa_sen.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/phong_tam_voi_hoa_sen.png"
+        />
         <span>Phòng tắm vòi hoa sen</span>
       </div>
     ),
@@ -154,9 +175,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/quay_bar_mini.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/quay_bar_mini.png"
+        />
         <span>Quầy bar mini</span>
       </div>
     ),
@@ -166,9 +187,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/truyen_hinh_cap.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/truyen_hinh_cap.png"
+        />
         <span>Truyền hình cáp</span>
       </div>
     ),
@@ -178,9 +199,9 @@ const OPTIONS_SELECT_ICON = [
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
         <img
-        className="h-[24px] w-[24px]"
-        src="/icon-facilities/tu_quan_ao.png"
-      />
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/tu_quan_ao.png"
+        />
         <span>Tủ quần áo</span>
       </div>
     ),
@@ -207,7 +228,10 @@ const OPTIONS_SELECT_ICON = [
   {
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
-        <img className="h-[24px] w-[24px]" src="/icon-facilities/tea-ceremony.png" />
+        <img
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/tea-ceremony.png"
+        />
         <span>Trà, Cà phê</span>
       </div>
     ),
@@ -225,7 +249,10 @@ const OPTIONS_SELECT_ICON = [
   {
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
-        <img className="h-[24px] w-[24px]" src="/icon-facilities/double-bed.png" />
+        <img
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/double-bed.png"
+        />
         <span>Giường đôi</span>
       </div>
     ),
@@ -234,7 +261,10 @@ const OPTIONS_SELECT_ICON = [
   {
     label: (
       <div className="flex flex-row justify-start items-center space-x-3">
-        <img className="h-[24px] w-[24px]" src="/icon-facilities/single-bed.png" />
+        <img
+          className="h-[24px] w-[24px]"
+          src="/icon-facilities/single-bed.png"
+        />
         <span>Giường đơn</span>
       </div>
     ),
