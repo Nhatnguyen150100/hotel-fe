@@ -138,7 +138,7 @@ export default function TheLandingPage() {
             src="./icontieude.png"
             alt="Icon tiêu đề"
           />
-          <span className="uppercase text-[32px] sm:text-[40px] font-normal">
+          <span className="uppercase text-[32px] sm:text-[40px] font-normal text-center">
             <strong className="me-2">khoảnh khắc</strong>
             đáng nhớ
           </span>

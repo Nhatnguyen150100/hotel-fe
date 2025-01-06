@@ -39,7 +39,7 @@ export default function ListRoomLandingPage() {
           src="./icontieude.png"
           alt="Icon tiêu đề"
         />
-        <span className="uppercase text-[32px] sm:text-[40px] font-normal">
+        <span className="uppercase text-[32px] sm:text-[40px] font-normal text-center">
           <strong className="me-2">ưu đãi</strong>
           dành cho bạn
         </span>
