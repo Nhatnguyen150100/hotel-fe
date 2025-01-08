@@ -113,9 +113,7 @@ export default function TheFooter() {
           </a>
         </div>
       </div>
-      <div className="fixed sm:left-5 left-5 sm:bottom-8 bottom-4 flex flex-col justify-center items-center space-y-3 hover:cursor-pointer z-10">
-        <ContactUs />
-      </div>
+      <ContactUs />
       <ScrollToTopBtn />
     </footer>
   );
