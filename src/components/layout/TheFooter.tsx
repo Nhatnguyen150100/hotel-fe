@@ -1,5 +1,5 @@
 import { MailFilled, PhoneFilled } from "@ant-design/icons";
-import { Divider, Tooltip } from "antd";
+import { Divider } from "antd";
 import ScrollToTopBtn from "../base/ScrollToTopBtn";
 import ContactUs from "../base/ContactUs";
 
