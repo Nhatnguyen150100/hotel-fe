@@ -27,7 +27,7 @@ export default function DestinationDetail() {
         <div className="container bg-transparent py-3">
           <Breadcrumb>
             <Breadcrumb.Item>
-              <Link to={DEFINE_ROUTE.home}>Khoảnh khắc đáng nhớ</Link>
+              <Link to={DEFINE_ROUTE.home}>Hình ảnh khách sạn</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>Bài viết</Breadcrumb.Item>
           </Breadcrumb>

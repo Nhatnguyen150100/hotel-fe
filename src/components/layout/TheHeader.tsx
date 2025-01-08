@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { DEFINE_ROUTE } from "../../constants/route-mapper";
 import { Button } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 
 export default function TheHeader() {
   return (
@@ -43,9 +44,11 @@ export default function TheHeader() {
               Bản đồ
             </a>
           </div>
-          <Button type="default" variant="outlined">
-            Đăng nhập
-          </Button>
+          <Button
+            type="text"
+            className="border-none p-0 h-[40px]"
+            icon={<MenuOutlined className="!text-xl text-red-600" />}
+          />
         </div>
       </div>
     </header>

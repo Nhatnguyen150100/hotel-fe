@@ -31,7 +31,7 @@ export default function SearchRoom({handleSearch} : IProps) {
     <div className="bg-white rounded-lg py-5 px-4 sm:px-10 flex sm:flex-row flex-col justify-between items-end shadow-lg sm:w-max space-x-5 space-y-5">
       <div className="flex flex-col space-y-3 sm:min-w-[280px] w-full sm:w-auto">
         <label className="text-base font-medium">
-          Bạn muốn nghỉ dưỡng ở đâu?
+          Phượng hoàng 3 cơ sở 1
         </label>
         <Input
           className="h-[45px]"

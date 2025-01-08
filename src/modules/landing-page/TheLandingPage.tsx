@@ -139,8 +139,8 @@ export default function TheLandingPage() {
             alt="Icon tiêu đề"
           />
           <span className="uppercase text-[32px] sm:text-[40px] font-normal text-center">
-            <strong className="me-2">khoảnh khắc</strong>
-            đáng nhớ
+            <strong className="me-2">Hình ảnh</strong>
+            khách sạn
           </span>
           <div className="min-h-[120px] w-full">
             <Visibility

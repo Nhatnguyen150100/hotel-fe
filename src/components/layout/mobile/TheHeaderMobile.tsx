@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DEFINE_ROUTE } from "../../../constants/route-mapper";
 import { Link } from "react-router-dom";
-import { AlignLeftOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 import { Button, Divider, Drawer } from "antd";
 
 export default function TheHeaderMobile() {
@@ -15,7 +15,7 @@ export default function TheHeaderMobile() {
         <Button
           type="text"
           className="border-none p-0 h-[40px]"
-          icon={<AlignLeftOutlined className="!text-xl" />}
+          icon={<MenuOutlined className="!text-xl text-red-600" />}
           onClick={() => {
             setOpenDrawer((pre) => !pre);
           }}
