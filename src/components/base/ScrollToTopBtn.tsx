@@ -34,7 +34,7 @@ export default function ScrollToTopBtn() {
         <Button
           variant="filled"
           onClick={scrollToTop}
-          className="h-10 w-10 rounded-full fixed sm:right-10 right-5 sm:bottom-14 bottom-8 !bg-red-600 !text-white !border-[white]"
+          className="h-10 w-10 rounded-full fixed z-20 sm:right-10 right-5 sm:bottom-14 bottom-20 !bg-red-600 !text-white !border-[white]"
         >
           <ArrowUpOutlined />
         </Button>

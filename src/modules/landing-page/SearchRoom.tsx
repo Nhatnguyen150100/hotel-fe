@@ -14,7 +14,7 @@ interface IProps {
   handleSearch: (startDate: Dayjs | null, endDate: Dayjs | null) => void;
 }
 
-export default function SearchRoom({handleSearch} : IProps) {
+export default function SearchRoom({ handleSearch }: IProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [startDate, setStartDate] = useState<Dayjs | null>(
     searchParams.get("startDate") !== "null" && searchParams.get("startDate")
@@ -31,7 +31,7 @@ export default function SearchRoom({handleSearch} : IProps) {
     <div className="bg-white rounded-lg py-5 px-4 sm:px-10 flex sm:flex-row flex-col justify-between items-end shadow-lg sm:w-max space-x-5 space-y-5">
       <div className="flex flex-col space-y-3 sm:min-w-[280px] w-full sm:w-auto">
         <label className="text-base font-medium">
-          Phượng hoàng 3 cơ sở 1
+          Bạn muốn nghỉ dưỡng ở đâu?
         </label>
         <Input
           className="h-[45px]"
@@ -41,7 +41,7 @@ export default function SearchRoom({handleSearch} : IProps) {
               style={{ color: "#787878" }}
             />
           }
-          placeholder="Nơi bạn muốn nghỉ dưỡng"
+          placeholder="Phượng hoàng 3"
         />
       </div>
       <div className="flex flex-col space-y-3 w-full sm:w-auto">
@@ -61,10 +61,13 @@ export default function SearchRoom({handleSearch} : IProps) {
               setStartDate(null);
               setEndDate(null);
               setSearchParams(
-                onRemoveParams({
-                  startDate: null,
-                  endDate: null,
-                },[null])
+                onRemoveParams(
+                  {
+                    startDate: null,
+                    endDate: null,
+                  },
+                  [null]
+                )
               );
               handleSearch(null, null);
             }
@@ -103,7 +106,7 @@ export default function SearchRoom({handleSearch} : IProps) {
         variant="filled"
         icon={<SearchOutlined />}
         onClick={() => {
-          if(!(startDate && endDate)) {
+          if (!(startDate && endDate)) {
             message.error("Vui lòng chọn ngày nhận và trả phòng");
             return;
           }
