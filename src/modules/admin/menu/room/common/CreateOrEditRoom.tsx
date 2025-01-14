@@ -26,9 +26,15 @@ type FieldType = {
   description: string;
   bedType: string;
   acreage: number;
-  normalDayPrice?: number;
-  weekendPrice?: number;
-  holidayPrice?: number;
+  normalDayPriceStart?: number;
+  normalDayPriceEnd?: number;
+  summerPriceStart?: number;
+  summerPriceEnd?: number;
+  hotDayPriceStart?: number;
+  hotDayPriceEnd?: number;
+  holidayPriceStart?: number;
+  holidayPriceEnd?: number;
+  titleHoliday?: string;
 };
 
 export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
@@ -93,9 +99,15 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
     formData.append("description", data.description);
     formData.append("bedType", data.bedType);
     formData.append("acreage", data.acreage.toString());
-    formData.append("normalDayPrice", data.normalDayPrice?.toString() ?? "");
-    formData.append("weekendPrice", data.weekendPrice?.toString() ?? "");
-    formData.append("holidayPrice", data.holidayPrice?.toString() ?? "");
+    formData.append("normalDayPriceStart", data.normalDayPriceStart?.toString() ?? "");
+    formData.append("normalDayPriceEnd", data.normalDayPriceEnd?.toString() ?? "");
+    formData.append("summerPriceStart", data.summerPriceStart?.toString() ?? "");
+    formData.append("summerPriceEnd", data.summerPriceEnd?.toString() ?? "");
+    formData.append("hotDayPriceStart", data.hotDayPriceStart?.toString() ?? "");
+    formData.append("hotDayPriceEnd", data.hotDayPriceEnd?.toString() ?? "");
+    formData.append("holidayPriceStart", data.holidayPriceStart?.toString() ?? "");
+    formData.append("holidayPriceEnd", data.holidayPriceEnd?.toString() ?? "");
+    formData.append("titleHoliday", data.titleHoliday?.toString() ?? "");
     formData.append("listFacilitiesId", listFacilitiesId.toString() ?? "");
     const listImg = onRemoveParams(files, [""]);
     if (Object.keys(listImg).length > 0) {
@@ -103,11 +115,17 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
         formData.append(key, listImg[key]);
       }
     }
-    handleSubmit(formData, listImageDelete.map(imageDelete => imageDelete));
+    handleSubmit(
+      formData,
+      listImageDelete.map((imageDelete) => imageDelete)
+    );
   };
 
-  const handleUploadFile = (file: File | undefined, field: 'img_1' | 'img_2' | 'img_3' | 'img_4' | 'img_5' | 'img_6') => {
-    if(file === undefined && item) {
+  const handleUploadFile = (
+    file: File | undefined,
+    field: "img_1" | "img_2" | "img_3" | "img_4" | "img_5" | "img_6"
+  ) => {
+    if (file === undefined && item) {
       const urlImage = item[field] ?? "";
       const newArr = listImageDelete;
       newArr.push(urlImage);
@@ -137,9 +155,15 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
           description: item?.description,
           bedType: item?.bedType,
           acreage: item?.acreage,
-          normalDayPrice: item?.normalDayPrice,
-          weekendPrice: item?.weekendPrice,
-          holidayPrice: item?.holidayPrice,
+          normalDayPriceStart: item?.normalDayPriceStart,
+          normalDayPriceEnd: item?.normalDayPriceEnd,
+          summerPriceStart: item?.summerPriceStart,
+          summerPriceEnd: item?.summerPriceEnd,
+          hotDayPriceStart: item?.hotDayPriceStart,
+          hotDayPriceEnd: item?.hotDayPriceEnd,
+          holidayPriceStart: item?.holidayPriceStart,
+          holidayPriceEnd: item?.holidayPriceEnd,
+          titleHoliday: item?.titleHoliday,
         }}
         autoComplete="off"
       >
@@ -176,12 +200,32 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
                 parser={parser}
               />
             </Form.Item>
+
+            <Form.Item<FieldType>
+              label="Mô tả phòng"
+              name="description"
+              rules={[{ required: true, message: "Hãy nhập mô tả phòng" }]}
+            >
+              <TextArea className="h-full" rows={8}/>
+            </Form.Item>
+
+            <Form.Item<FieldType>
+              label="Tiêu đề ngày lễ"
+              name="titleHoliday"
+              rules={[{ required: true, message: "Hãy nhập mô tả ngày lễ" }]}
+            >
+              <TextArea className="h-full" rows={3}/>
+            </Form.Item>
           </div>
           <div>
             <Form.Item<FieldType>
-              label="Giá thuê ngày thường"
-              name="normalDayPrice"
-              rules={[{ required: true, message: "Hãy nhập giá thuê" }]}
+              label="Giá phòng tháng thấp điểm - giá đầu"
+              name="normalDayPriceStart"
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê thấp nhất" },
+              ]}
             >
               <InputNumber
                 size="large"
@@ -191,25 +235,113 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
               />
             </Form.Item>
             <Form.Item<FieldType>
-              label="Giá thuê cuối tuần"
-              name="weekendPrice"
-              rules={[{ required: true, message: "Hãy nhập giá thuê" }]}
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng tháng thấp điểm - giá cuối"
+              name="normalDayPriceEnd"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê cao nhất" },
+              ]}
             >
               <InputNumber
-                className="w-full"
                 size="large"
+                className="w-full"
                 formatter={formatter}
                 parser={parser}
               />
             </Form.Item>
             <Form.Item<FieldType>
-              label="Giá thuê ngày lễ"
-              name="holidayPrice"
-              rules={[{ required: true, message: "Hãy nhập giá thuê" }]}
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng tháng đầu hè - giá đầu"
+              name="summerPriceStart"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê thấp nhất" },
+              ]}
             >
               <InputNumber
-                className="w-full"
                 size="large"
+                className="w-full"
+                formatter={formatter}
+                parser={parser}
+              />
+            </Form.Item>
+            <Form.Item<FieldType>
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng tháng đầu hè - giá cuối"
+              name="summerPriceEnd"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê cao nhất" },
+              ]}
+            >
+              <InputNumber
+                size="large"
+                className="w-full"
+                formatter={formatter}
+                parser={parser}
+              />
+            </Form.Item>
+            <Form.Item<FieldType>
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng tháng cao điểm - giá đầu"
+              name="hotDayPriceStart"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê thấp nhất" },
+              ]}
+            >
+              <InputNumber
+                size="large"
+                className="w-full"
+                formatter={formatter}
+                parser={parser}
+              />
+            </Form.Item>
+            <Form.Item<FieldType>
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng tháng cao điểm - giá cuối"
+              name="hotDayPriceEnd"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê cao nhất" },
+              ]}
+            >
+              <InputNumber
+                size="large"
+                className="w-full"
+                formatter={formatter}
+                parser={parser}
+              />
+            </Form.Item>
+            <Form.Item<FieldType>
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng ngày lễ - giá đầu"
+              name="holidayPriceStart"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê thấp nhất" },
+              ]}
+            >
+              <InputNumber
+                size="large"
+                className="w-full"
+                formatter={formatter}
+                parser={parser}
+              />
+            </Form.Item>
+            <Form.Item<FieldType>
+              labelCol={{ span: 12 }}
+              wrapperCol={{ span: 12 }}
+              label="Giá phòng ngày lễ - giá cuối"
+              name="holidayPriceEnd"
+              rules={[
+                { required: true, message: "Hãy nhập giá thuê cao nhất" },
+              ]}
+            >
+              <InputNumber
+                size="large"
+                className="w-full"
                 formatter={formatter}
                 parser={parser}
               />
@@ -235,14 +367,6 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
             options={optionsSelect}
           />
         </Form.Item>
-        <Form.Item<FieldType>
-          label="Mô tả phòng"
-          name="description"
-          labelCol={{ span: 3 }}
-          rules={[{ required: true, message: "Hãy nhập mô tả phòng" }]}
-        >
-          <TextArea />
-        </Form.Item>
 
         <div className="grid grid-cols-2 gap-x-4 mt-4">
           <div>
@@ -256,7 +380,9 @@ export default function CreateOrEditRoom({ item, handleSubmit }: IProps) {
               <ImgUpload
                 imgProps={listImg.img_1}
                 file={files.img_1}
-                handleUploadFile={(file: File | undefined) => handleUploadFile(file, "img_1")}
+                handleUploadFile={(file: File | undefined) =>
+                  handleUploadFile(file, "img_1")
+                }
               />
             </Form.Item>
             <Form.Item<any>

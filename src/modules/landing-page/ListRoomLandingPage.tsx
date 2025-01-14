@@ -39,9 +39,9 @@ export default function ListRoomLandingPage() {
           src="./icontieude.png"
           alt="Icon tiêu đề"
         />
-        <span className="uppercase text-[32px] sm:text-[40px] font-normal text-center">
-          <strong className="me-2">ưu đãi</strong>
-          dành cho bạn
+        <span className="uppercase text-[32px] sm:text-[40px] font-normal">
+          <strong className="me-2">Danh sách</strong>
+          phòng dành cho bạn
         </span>
         <div className="min-h-[220px] w-full">
           <Swiper
@@ -69,7 +69,7 @@ export default function ListRoomLandingPage() {
           >
             {listRoom.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="flex flex-col justify-start items-start space-y-3 bg-[#f4f4f5]">
+                <div className="flex flex-col justify-start items-start space-y-3">
                   <div className="h-[250px] max-w-[380px]">
                     <ImageHover
                       src={item.img_1 ?? "/landing_page/swipper/swipper_1.jpg"}
@@ -114,7 +114,7 @@ export default function ListRoomLandingPage() {
                       <span className="text-base text-black italic font-normal">
                         Giá chỉ từ:{" "}
                       </span>{" "}
-                      {formatCurrency(item.normalDayPrice ?? 0)}
+                      {formatCurrency(item.normalDayPriceStart ?? 0)}
                     </span>
                   </div>
                 </div>

@@ -91,9 +91,10 @@ export default function RoomManager() {
     },
     {
       title: "Diện tích phòng",
-      dataIndex: "bedType",
+      dataIndex: "acreage",
+      align: "center",
       key: "name",
-      render: (text) => <span className="text-lg font-medium">{text}</span>,
+      render: (text) => <span className="text-lg font-medium">{text} m2</span>,
     },
     {
       title: "Xóa phòng",

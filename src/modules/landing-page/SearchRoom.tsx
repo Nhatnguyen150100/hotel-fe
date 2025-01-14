@@ -1,10 +1,9 @@
 import {
-  EnvironmentOutlined,
   EuroCircleOutlined,
   HomeOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Button, DatePicker, Input, message } from "antd";
+import { Button, DatePicker, Input, message, Select } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
@@ -33,14 +32,23 @@ export default function SearchRoom({ handleSearch }: IProps) {
         <label className="text-base font-medium">
           Bạn muốn nghỉ dưỡng ở đâu?
         </label>
-        <Input
-          className="h-[45px]"
-          prefix={
-            <EnvironmentOutlined
-              className="me-2"
-              style={{ color: "#787878" }}
-            />
-          }
+        <Select
+          className="h-[45px] max-w-[320px] sm:max-w-[680px]"
+          allowClear
+          options={[
+            {
+              label: "Khách sạn Phượng Hoàng 2 - Sầm sơn",
+              value: 1
+            },
+            {
+              label: "Khách sạn Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải - Tp. Thanh Hóa",
+              value: 2
+            },
+            {
+              label: "Khách sạn Phượng Hoàng 3: Số 96 - Đường Lê Hoàn - P. Điện Biên - Tp. Thanh Hóa",
+              value: 3
+            },
+          ]}
           placeholder="Phượng hoàng 3"
         />
       </div>
