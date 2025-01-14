@@ -232,7 +232,7 @@ export default function BookingPage() {
               <div className="flex flex-col justify-start items-start space-y-1 !mt-10">
                 <span className="italic text-sm">Giá chỉ từ</span>
                 <span className="font-semibold text-2xl text-yellow-500">
-                  {formatCurrency(room?.normalDayPrice ?? 0)}
+                  {formatCurrency(room?.normalDayPriceStart ?? 0)}
                 </span>
               </div>
             </div>
