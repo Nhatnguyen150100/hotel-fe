@@ -13,14 +13,23 @@ export default function TheFooter() {
               KHÁCH SẠN PHƯỢNG HOÀNG 2
             </h3>
             <Divider variant="solid" className="border-[1px] border-gray-300" />
-            <p className="text-[var(--color-text-footer)]">
-              Khách sạn Phượng Hoàng 2 đạt tiêu chuẩn 3 sao tọa lạc tại mặt
-              biển, đường Hồ Xuân Hương, Sầm Sơn Thanh Hóa. Khách sạn xây dựng
-              16 tầng với 130 phòng nghỉ, hầu hết các phòng đều hướng ra biển
-              Sầm Sơn. Với sức chứa lên tới 600 tại hội trường tầng 2, khách sạn
-              Phượng Hoàng 2 là địa điểm tuyệt vời để quý khách hàng tổ chức sự
-              kiện.
-            </p>
+            <h3 className="text-white sm:text-xl text-lg">
+              🏢 HỆ THỐNG KHÁCH SẠN PHƯỢNG HOÀNG
+            </h3>
+            <ul className="list-none">
+              <li className="text-white text-base">
+                1️⃣ KS Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải -
+                Tp. Thanh Hóa
+              </li>
+              <li className="text-white">
+                1️⃣ KS Phượng Hoàng 2: Bãi tắm C - Đường Hồ Xuân Hương - P. Trung
+                Kỳ - Tp. Sầm Sơn
+              </li>
+              <li className="text-white">
+                1️⃣ KS Phượng Hoàng 3: Số 96 - Đường Lê Hoàn - P. Điện Biên - Tp.
+                Thanh Hóa
+              </li>
+            </ul>
           </div>
           <div className="flex flex-col justify-start items-start space-y-4">
             <h3 className="font-semibold text-white text-xl">
@@ -54,17 +63,20 @@ export default function TheFooter() {
                 Zalo: 0945.293.201
               </a>
             </div>
-            <div className="flex items-center space-x-2">
-              <img
-                className="h-[24px]"
-                src="/location-map.png"
-                alt="Location Icon"
-              />
-              <span className="text-[var(--color-text-footer)]">
-                Bãi tắm C, Đường Hồ Xuân Hương – P.Trung Sơn – TP Sầm Sơn, Thanh
-                Hóa
-              </span>
-            </div>
+            <ul className="list-none">
+              <li className="text-white text-base">
+                1️⃣ KS Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải -
+                Tp. Thanh Hóa
+              </li>
+              <li className="text-white">
+                1️⃣ KS Phượng Hoàng 2: Bãi tắm C - Đường Hồ Xuân Hương - P. Trung
+                Kỳ - Tp. Sầm Sơn
+              </li>
+              <li className="text-white">
+                1️⃣ KS Phượng Hoàng 3: Số 96 - Đường Lê Hoàn - P. Điện Biên - Tp.
+                Thanh Hóa
+              </li>
+            </ul>
           </div>
         </div>
         <Divider variant="solid" className="border-[1px] border-gray-300" />

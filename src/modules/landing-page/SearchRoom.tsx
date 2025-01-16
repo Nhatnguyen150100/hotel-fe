@@ -49,7 +49,7 @@ export default function SearchRoom({ handleSearch }: IProps) {
               value: 3
             },
           ]}
-          placeholder="Phượng hoàng 3"
+          placeholder="Khách sạn Phượng Hoàng 2 - Thành phố Sầm Sơn"
         />
       </div>
       <div className="flex flex-col space-y-3 w-full sm:w-auto">

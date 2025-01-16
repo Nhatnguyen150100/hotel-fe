@@ -31,12 +31,12 @@ const DEFINE_DATA = [
   {
     label: "Điện thoại",
     icon: "/contact-us/phone.png",
-    href: "tel:0987654321",
+    href: "tel:0945293201",
   },
   {
     label: "Nhắn tin",
     icon: "/contact-us/sms.png",
-    href: "sms:0987654321",
+    href: "sms:0945293201",
   },
   {
     label: "Chat zalo",
