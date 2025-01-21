@@ -2,6 +2,7 @@ import { MailFilled, PhoneFilled } from "@ant-design/icons";
 import { Divider } from "antd";
 import ScrollToTopBtn from "../base/ScrollToTopBtn";
 import ContactUs from "../base/ContactUs";
+import { Link } from "react-router-dom";
 
 export default function TheFooter() {
   return (
@@ -13,10 +14,18 @@ export default function TheFooter() {
               KHÁCH SẠN PHƯỢNG HOÀNG 2
             </h3>
             <Divider variant="solid" className="border-[1px] border-gray-300" />
+            <p className="text-white text-base">
+              Khách sạn Phượng Hoàng 2 đạt tiêu chuẩn 3 sao tọa lạc tại mặt
+              biển, đường Hồ Xuân Hương, Sầm Sơn Thanh Hóa. Khách sạn xây dựng
+              16 tầng với 130 phòng nghỉ, hầu hết các phòng đều hướng ra biển
+              Sầm Sơn. Với sức chứa lên tới 600 tại hội trường tầng 2, khách sạn
+              Phượng Hoàng 2 là địa điểm tuyệt vời để quý khách hàng tổ chức sự
+              kiện.
+            </p>
             <h3 className="text-white sm:text-xl text-lg">
               🏢 HỆ THỐNG KHÁCH SẠN PHƯỢNG HOÀNG
             </h3>
-            <ul className="list-none">
+            <ul className="list-none space-y-3">
               <li className="text-white text-base">
                 1️⃣ KS Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải -
                 Tp. Thanh Hóa
@@ -63,18 +72,27 @@ export default function TheFooter() {
                 Zalo: 0945.293.201
               </a>
             </div>
-            <ul className="list-none">
+            <ul className="list-none space-y-3">
               <li className="text-white text-base">
-                1️⃣ KS Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải -
-                Tp. Thanh Hóa
+                <Link to="https://phoenixhotel.vn/" target="_blank">
+                  1️⃣ KS Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải -
+                  Tp. Thanh Hóa
+                </Link>
+                <img className="h-20 w-20 mt-2" src="/qr/QR_1.png" alt="QR_1"/>
               </li>
               <li className="text-white">
-                1️⃣ KS Phượng Hoàng 2: Bãi tắm C - Đường Hồ Xuân Hương - P. Trung
-                Kỳ - Tp. Sầm Sơn
+                <Link to="https://khachsanphuonghoang2samson.vn/" target="_blank">
+                  1️⃣ KS Phượng Hoàng 2: Bãi tắm C - Đường Hồ Xuân Hương - P.
+                  Trung Kỳ - Tp. Sầm Sơn
+                </Link>
+                <img className="h-20 w-20 mt-2" src="/qr/QR_2.png" alt="QR_2"/>
               </li>
               <li className="text-white">
-                1️⃣ KS Phượng Hoàng 3: Số 96 - Đường Lê Hoàn - P. Điện Biên - Tp.
-                Thanh Hóa
+                <Link to="https://khachsanphuonghoang3.vn/" target="_blank">
+                  1️⃣ KS Phượng Hoàng 3: Số 96 - Đường Lê Hoàn - P. Điện Biên -
+                  Tp. Thanh Hóa
+                </Link>
+                <img className="h-20 w-20 mt-2" src="/qr/QR_3.png" alt="QR_3"/>
               </li>
             </ul>
           </div>
