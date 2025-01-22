@@ -45,32 +45,42 @@ export default function TheFooter() {
               THÔNG TIN LIÊN HỆ
             </h3>
             <Divider variant="solid" className="border-[1px] border-gray-300" />
-            <div className="flex items-center space-x-2">
-              <MailFilled style={{ color: "white" }} />
-              <a
-                href="mailto:gm@phoenixhotel.vn"
-                className="text-[var(--color-text-footer)] hover:text-white hover:underline"
-              >
-                gm@phoenixhotel.vn
-              </a>
-            </div>
-            <div className="flex items-center space-x-2">
-              <PhoneFilled style={{ color: "white" }} />
-              <a
-                href="tel:0945.293.201"
-                className="text-[var(--color-text-footer)] hover:text-white hover:underline"
-              >
-                Phone: 0945.293.201
-              </a>
-            </div>
-            <div className="flex items-center space-x-2">
-              <img className="h-[24px]" src="/zalo-icon.png" alt="Zalo Icon" />
-              <a
-                href="https://zalo.me/0945.293.201"
-                className="text-[var(--color-text-footer)] hover:text-white hover:underline"
-              >
-                Zalo: 0945.293.201
-              </a>
+            <div className="flex flex-row justify-start items-center w-full space-x-10">
+              <div className="flex flex-col justify-start items-start space-y-4">
+                <div className="flex items-center space-x-2">
+                  <MailFilled style={{ color: "white" }} />
+                  <a
+                    href="mailto:gm@phoenixhotel.vn"
+                    className="text-[var(--color-text-footer)] hover:text-white hover:underline"
+                  >
+                    gm@phoenixhotel.vn
+                  </a>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <PhoneFilled style={{ color: "white" }} />
+                  <a
+                    href="tel:0945.293.201"
+                    className="text-[var(--color-text-footer)] hover:text-white hover:underline"
+                  >
+                    Phone: 0945.293.201
+                  </a>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <img
+                    className="h-[24px]"
+                    src="/zalo-icon.png"
+                    alt="Zalo Icon"
+                  />
+                  <a
+                    href="https://zalo.me/0945.293.201"
+                    className="text-[var(--color-text-footer)] hover:text-white hover:underline"
+                  >
+                    Zalo: 0945.293.201
+                  </a>
+                </div>
+              </div>
+
+              <img className="h-24 w-24 mt-2" src="/qr/QR_PH.jpg" alt="QR_1" />
             </div>
             <ul className="list-none space-y-3">
               <li className="text-white text-base">
@@ -78,21 +88,21 @@ export default function TheFooter() {
                   1️⃣ KS Phượng Hoàng 1: 998 - Đại lộ Hùng Vương - P. Đông Hải -
                   Tp. Thanh Hóa
                 </Link>
-                <img className="h-20 w-20 mt-2" src="/qr/QR_1.png" alt="QR_1"/>
               </li>
               <li className="text-white">
-                <Link to="https://khachsanphuonghoang2samson.vn/" target="_blank">
+                <Link
+                  to="https://khachsanphuonghoang2samson.vn/"
+                  target="_blank"
+                >
                   1️⃣ KS Phượng Hoàng 2: Bãi tắm C - Đường Hồ Xuân Hương - P.
                   Trung Kỳ - Tp. Sầm Sơn
                 </Link>
-                <img className="h-20 w-20 mt-2" src="/qr/QR_2.png" alt="QR_2"/>
               </li>
               <li className="text-white">
                 <Link to="https://khachsanphuonghoang3.vn/" target="_blank">
                   1️⃣ KS Phượng Hoàng 3: Số 96 - Đường Lê Hoàn - P. Điện Biên -
                   Tp. Thanh Hóa
                 </Link>
-                <img className="h-20 w-20 mt-2" src="/qr/QR_3.png" alt="QR_3"/>
               </li>
             </ul>
           </div>
