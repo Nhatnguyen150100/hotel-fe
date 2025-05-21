@@ -70,7 +70,8 @@ export default function ListRoom() {
 
   return (
     <div className="flex flex-col justify-start items-center py-5 space-y-5 w-full">
-      <SearchRoom
+      <div className="mt-20">
+        <SearchRoom
         handleSearch={(startDate, endDate) => {
           handleGetListRoom({
             ...query,
@@ -79,6 +80,7 @@ export default function ListRoom() {
           });
         }}
       />
+      </div>
       <div className="flex sm:flex-row flex-col sm:justify-between sm:items-start w-full max-w-[1300px] sm:space-x-10 sm:space-y-0 space-y-5 justify-start items-center px-3 sm:px-0">
         <div className="flex flex-col px-8 py-5 justify-start items-start bg-white rounded-2xl sm:min-w-[360px] min-w-[320px]">
           <h1 className="text-lg font-semibold">Kết quả</h1>

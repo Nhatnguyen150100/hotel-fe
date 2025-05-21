@@ -86,7 +86,7 @@ export default function ListRoomLandingPage() {
                     <span className="text-base font-bold mb-3 text-red-700">
                       Các tiện ích có trong phòng
                     </span>
-                    <div className="grid grid-cols-3 gap-y-3 w-full">
+                    <div className="grid grid-cols-2 gap-y-3 w-full">
                       <Visibility
                         visibility={Boolean(item?.facilitiesRooms?.length)}
                       >
@@ -100,7 +100,7 @@ export default function ListRoomLandingPage() {
                                 className="!h-5 !w-5"
                                 src={`/icon-facilities/${facility.facility.icon}.png`}
                               />
-                              <span className="text-base">
+                              <span className="text-base text-start">
                                 {facility.facility.name}
                               </span>
                             </div>
